@@ -1,0 +1,3267 @@
+{
+ "meta": {
+  "provider": "groq",
+  "model": "openai/gpt-oss-120b",
+  "prompt_version": "extract-v1",
+  "narratives": true,
+  "cases": 102,
+  "documents": 10,
+  "dataset_sha256": "0e900be952973519",
+  "run_at": "2026-10-20T04:24:34+00:00",
+  "wall_time_s": 663.6
+ },
+ "summary": {
+  "route_accuracy": 1.0,
+  "code_set_accuracy": 1.0,
+  "exception_precision": 1.0,
+  "exception_recall": 1.0,
+  "false_positive_rate": 0.0,
+  "false_negative_rate": 0.0,
+  "unsafe_auto_clears": 0,
+  "appropriate_abstention_rate": 1.0,
+  "amount_accuracy": 1.0,
+  "extraction_documents_ok": 1.0,
+  "rate_row_recall": 1.0,
+  "spurious_rate_rows": 0,
+  "evidence_verified_rate": 1.0,
+  "effective_date_accuracy": 1.0,
+  "cancellation_terms_accuracy": 1.0,
+  "narratives_attempted": 58,
+  "narratives_from_llm": 58,
+  "narratives_rejected_unsupported_numbers": 0,
+  "llm_calls": 68,
+  "input_tokens": 55763,
+  "output_tokens": 50300,
+  "est_cost_usd": 0.0385,
+  "mean_llm_latency_ms": 2274.1
+ },
+ "by_category": {
+  "amendment": {
+   "n": 8,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "cancellation": {
+   "n": 11,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "currency": {
+   "n": 3,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "injection": {
+   "n": 6,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "match": {
+   "n": 18,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "missing_field": {
+   "n": 5,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "multi_room": {
+   "n": 2,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "no_contract": {
+   "n": 1,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "overcharge": {
+   "n": 14,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "rate_not_found": {
+   "n": 5,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "rounding_trap": {
+   "n": 4,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "season_boundary": {
+   "n": 10,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "undercharge": {
+   "n": 5,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "unreadable": {
+   "n": 5,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "version_conflict": {
+   "n": 5,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  }
+ },
+ "documents": [
+  {
+   "document_id": "ANC-DXB-2026-A1",
+   "ok": true,
+   "error": null,
+   "gold_rows": 2,
+   "correct_rows": 2,
+   "extracted_rows": 2,
+   "spurious_rows": 0,
+   "verified_rows": 2,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "schema_errors": []
+  },
+  {
+   "document_id": "ANC-DXB-2026-v1",
+   "ok": true,
+   "error": null,
+   "gold_rows": 9,
+   "correct_rows": 9,
+   "extracted_rows": 9,
+   "spurious_rows": 0,
+   "verified_rows": 9,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "schema_errors": []
+  },
+  {
+   "document_id": "CT-LIS-2026-v1",
+   "ok": true,
+   "error": null,
+   "gold_rows": 12,
+   "correct_rows": 12,
+   "extracted_rows": 12,
+   "spurious_rows": 0,
+   "verified_rows": 12,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "schema_errors": []
+  },
+  {
+   "document_id": "HC-KTM-2026-v1",
+   "ok": true,
+   "error": null,
+   "gold_rows": 6,
+   "correct_rows": 6,
+   "extracted_rows": 6,
+   "spurious_rows": 0,
+   "verified_rows": 6,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "schema_errors": []
+  },
+  {
+   "document_id": "HVG-PRG-2026-v1",
+   "ok": true,
+   "error": null,
+   "gold_rows": 6,
+   "correct_rows": 6,
+   "extracted_rows": 6,
+   "spurious_rows": 0,
+   "verified_rows": 6,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "schema_errors": []
+  },
+  {
+   "document_id": "MPH-SIN-2026-v1",
+   "ok": true,
+   "error": null,
+   "gold_rows": 6,
+   "correct_rows": 6,
+   "extracted_rows": 6,
+   "spurious_rows": 0,
+   "verified_rows": 6,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "schema_errors": []
+  },
+  {
+   "document_id": "ROB-BKK-2026-A1",
+   "ok": true,
+   "error": null,
+   "gold_rows": 1,
+   "correct_rows": 1,
+   "extracted_rows": 1,
+   "spurious_rows": 0,
+   "verified_rows": 1,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "schema_errors": []
+  },
+  {
+   "document_id": "ROB-BKK-2026-A1R",
+   "ok": true,
+   "error": null,
+   "gold_rows": 1,
+   "correct_rows": 1,
+   "extracted_rows": 1,
+   "spurious_rows": 0,
+   "verified_rows": 1,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "schema_errors": []
+  },
+  {
+   "document_id": "ROB-BKK-2026-v1",
+   "ok": true,
+   "error": null,
+   "gold_rows": 6,
+   "correct_rows": 6,
+   "extracted_rows": 6,
+   "spurious_rows": 0,
+   "verified_rows": 6,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "schema_errors": []
+  },
+  {
+   "document_id": "SPR-GOA-2026-v1",
+   "ok": true,
+   "error": null,
+   "gold_rows": 6,
+   "correct_rows": 6,
+   "extracted_rows": 6,
+   "spurious_rows": 0,
+   "verified_rows": 6,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "schema_errors": []
+  }
+ ],
+ "cases": [
+  {
+   "case_id": "C001",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 3.1,
+   "usage": []
+  },
+  {
+   "case_id": "C002",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.1,
+   "usage": []
+  },
+  {
+   "case_id": "C003",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.0,
+   "usage": []
+  },
+  {
+   "case_id": "C004",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.8,
+   "usage": []
+  },
+  {
+   "case_id": "C005",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.5,
+   "usage": []
+  },
+  {
+   "case_id": "C006",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.3,
+   "usage": []
+  },
+  {
+   "case_id": "C007",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.0,
+   "usage": []
+  },
+  {
+   "case_id": "C008",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.4,
+   "usage": []
+  },
+  {
+   "case_id": "C009",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 0.8,
+   "usage": []
+  },
+  {
+   "case_id": "C010",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 0.7,
+   "usage": []
+  },
+  {
+   "case_id": "C011",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 0.8,
+   "usage": []
+  },
+  {
+   "case_id": "C012",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.0,
+   "usage": []
+  },
+  {
+   "case_id": "C013",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 0.9,
+   "usage": []
+  },
+  {
+   "case_id": "C014",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 2.0,
+   "usage": []
+  },
+  {
+   "case_id": "C015",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 0.9,
+   "usage": []
+  },
+  {
+   "case_id": "C016",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.1,
+   "usage": []
+  },
+  {
+   "case_id": "C017",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 0.9,
+   "usage": []
+  },
+  {
+   "case_id": "C018",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C019",
+   "category": "overcharge",
+   "description": "Invoice inflated by 60.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "180.00",
+   "predicted_delta": "180.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 16090.6,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 3047.9,
+     "input_tokens": 712,
+     "output_tokens": 1017,
+     "cost_usd": 0.0007169999999999999,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C020",
+   "category": "overcharge",
+   "description": "Invoice inflated by 10.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "60.00",
+   "predicted_delta": "60.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 12798.2,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2753.8,
+     "input_tokens": 986,
+     "output_tokens": 660,
+     "cost_usd": 0.0005438999999999999,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C021",
+   "category": "overcharge",
+   "description": "Invoice inflated by 800.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "1600.00",
+   "predicted_delta": "1600.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 8592.6,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2552.7,
+     "input_tokens": 664,
+     "output_tokens": 811,
+     "cost_usd": 0.0005861999999999999,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C022",
+   "category": "overcharge",
+   "description": "Invoice inflated by 10.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "30.00",
+   "predicted_delta": "30.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 8907.9,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1867.4,
+     "input_tokens": 711,
+     "output_tokens": 672,
+     "cost_usd": 0.00050985,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C023",
+   "category": "overcharge",
+   "description": "Invoice inflated by 10.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "50.00",
+   "predicted_delta": "50.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 10855.2,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1816.5,
+     "input_tokens": 852,
+     "output_tokens": 521,
+     "cost_usd": 0.00044039999999999997,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C024",
+   "category": "overcharge",
+   "description": "Invoice inflated by 60.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "360.00",
+   "predicted_delta": "360.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 9608.5,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1562.2,
+     "input_tokens": 986,
+     "output_tokens": 531,
+     "cost_usd": 0.0004665,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C025",
+   "category": "overcharge",
+   "description": "Invoice inflated by 35.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "245.00",
+   "predicted_delta": "245.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 11353.3,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2310.9,
+     "input_tokens": 1012,
+     "output_tokens": 725,
+     "cost_usd": 0.0005868,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C026",
+   "category": "overcharge",
+   "description": "Invoice inflated by 15.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "90.00",
+   "predicted_delta": "90.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 12422.3,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2379.8,
+     "input_tokens": 923,
+     "output_tokens": 724,
+     "cost_usd": 0.0005728499999999999,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C027",
+   "category": "overcharge",
+   "description": "Invoice inflated by 15.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "75.00",
+   "predicted_delta": "75.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 9358.6,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1317.6,
+     "input_tokens": 856,
+     "output_tokens": 534,
+     "cost_usd": 0.00044879999999999996,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C028",
+   "category": "overcharge",
+   "description": "Invoice inflated by 1200.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "8400.00",
+   "predicted_delta": "8400.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 12145.2,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2098.3,
+     "input_tokens": 1071,
+     "output_tokens": 836,
+     "cost_usd": 0.00066225,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C029",
+   "category": "overcharge",
+   "description": "Invoice inflated by 25.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "100.00",
+   "predicted_delta": "100.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 13469.7,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2426.7,
+     "input_tokens": 833,
+     "output_tokens": 902,
+     "cost_usd": 0.0006661499999999999,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C030",
+   "category": "overcharge",
+   "description": "Invoice inflated by 35.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "175.00",
+   "predicted_delta": "175.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 12574.8,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2533.3,
+     "input_tokens": 856,
+     "output_tokens": 624,
+     "cost_usd": 0.0005028,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C031",
+   "category": "overcharge",
+   "description": "Invoice inflated by 15.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "75.00",
+   "predicted_delta": "75.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 11994.7,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1951.9,
+     "input_tokens": 901,
+     "output_tokens": 675,
+     "cost_usd": 0.00054015,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C032",
+   "category": "overcharge",
+   "description": "Invoice inflated by 4800.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "9600.00",
+   "predicted_delta": "9600.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 7822.8,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1782.6,
+     "input_tokens": 664,
+     "output_tokens": 634,
+     "cost_usd": 0.00048,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C033",
+   "category": "undercharge",
+   "description": "Invoice below contract",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "UNDERCHARGE"
+   ],
+   "predicted_codes": [
+    "UNDERCHARGE"
+   ],
+   "expected_delta": "-40.00",
+   "predicted_delta": "-40.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 6400.1,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1326.4,
+     "input_tokens": 649,
+     "output_tokens": 474,
+     "cost_usd": 0.00038175,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C034",
+   "category": "undercharge",
+   "description": "Invoice below contract",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "UNDERCHARGE"
+   ],
+   "predicted_codes": [
+    "UNDERCHARGE"
+   ],
+   "expected_delta": "-40.00",
+   "predicted_delta": "-40.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 11599.2,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1459.9,
+     "input_tokens": 798,
+     "output_tokens": 492,
+     "cost_usd": 0.0004149,
+     "attempts": 3,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C035",
+   "category": "undercharge",
+   "description": "Invoice below contract",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "UNDERCHARGE"
+   ],
+   "predicted_codes": [
+    "UNDERCHARGE"
+   ],
+   "expected_delta": "-40.00",
+   "predicted_delta": "-40.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 7410.8,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1329.8,
+     "input_tokens": 790,
+     "output_tokens": 436,
+     "cost_usd": 0.00038009999999999997,
+     "attempts": 3,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C036",
+   "category": "undercharge",
+   "description": "Invoice below contract",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "UNDERCHARGE"
+   ],
+   "predicted_codes": [
+    "UNDERCHARGE"
+   ],
+   "expected_delta": "-3200.00",
+   "predicted_delta": "-3200.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 7420.9,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1378.9,
+     "input_tokens": 833,
+     "output_tokens": 397,
+     "cost_usd": 0.00036314999999999996,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C037",
+   "category": "undercharge",
+   "description": "Invoice below contract",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "UNDERCHARGE"
+   ],
+   "predicted_codes": [
+    "UNDERCHARGE"
+   ],
+   "expected_delta": "-40.00",
+   "predicted_delta": "-40.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 9587.8,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1357.1,
+     "input_tokens": 721,
+     "output_tokens": 488,
+     "cost_usd": 0.00040095,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C038",
+   "category": "rounding_trap",
+   "description": "Difference within rounding tolerance",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.50",
+   "predicted_delta": "0.50",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.5,
+   "usage": []
+  },
+  {
+   "case_id": "C039",
+   "category": "rounding_trap",
+   "description": "Difference within rounding tolerance",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "-0.75",
+   "predicted_delta": "-0.75",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.1,
+   "usage": []
+  },
+  {
+   "case_id": "C040",
+   "category": "rounding_trap",
+   "description": "Difference within rounding tolerance",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.01",
+   "predicted_delta": "0.01",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 0.7,
+   "usage": []
+  },
+  {
+   "case_id": "C041",
+   "category": "rounding_trap",
+   "description": "Difference within rounding tolerance",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "-0.75",
+   "predicted_delta": "-0.75",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.1,
+   "usage": []
+  },
+  {
+   "case_id": "C042",
+   "category": "season_boundary",
+   "description": "Stay crosses season change; invoice correct",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 0.9,
+   "usage": []
+  },
+  {
+   "case_id": "C043",
+   "category": "season_boundary",
+   "description": "Stay crosses season change; supplier billed every night at first-season rate",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "UNDERCHARGE"
+   ],
+   "predicted_codes": [
+    "UNDERCHARGE"
+   ],
+   "expected_delta": "-90.00",
+   "predicted_delta": "-90.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 7153.0,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2108.3,
+     "input_tokens": 865,
+     "output_tokens": 510,
+     "cost_usd": 0.00043575,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C044",
+   "category": "season_boundary",
+   "description": "Stay crosses season change; invoice correct",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 2.0,
+   "usage": []
+  },
+  {
+   "case_id": "C045",
+   "category": "season_boundary",
+   "description": "Stay crosses season change; supplier billed every night at first-season rate",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "80.00",
+   "predicted_delta": "80.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 11259.0,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2124.3,
+     "input_tokens": 901,
+     "output_tokens": 788,
+     "cost_usd": 0.0006079499999999999,
+     "attempts": 3,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C046",
+   "category": "season_boundary",
+   "description": "Stay crosses season change; invoice correct",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 0.7,
+   "usage": []
+  },
+  {
+   "case_id": "C047",
+   "category": "season_boundary",
+   "description": "Stay crosses season change; supplier billed every night at first-season rate",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "2600.00",
+   "predicted_delta": "2600.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 10034.6,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1993.1,
+     "input_tokens": 909,
+     "output_tokens": 667,
+     "cost_usd": 0.00053655,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C048",
+   "category": "season_boundary",
+   "description": "Stay crosses season change; invoice correct",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.1,
+   "usage": []
+  },
+  {
+   "case_id": "C049",
+   "category": "season_boundary",
+   "description": "Stay crosses season change; supplier billed every night at first-season rate",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "32.00",
+   "predicted_delta": "32.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 14130.7,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1965.8,
+     "input_tokens": 857,
+     "output_tokens": 722,
+     "cost_usd": 0.00056175,
+     "attempts": 3,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C050",
+   "category": "season_boundary",
+   "description": "Check-in on last night of season; checkout day not charged",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.1,
+   "usage": []
+  },
+  {
+   "case_id": "C051",
+   "category": "season_boundary",
+   "description": "Checkout on first day of new season",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.0,
+   "usage": []
+  },
+  {
+   "case_id": "C052",
+   "category": "amendment",
+   "description": "Booked after amendment; new lower rate correctly invoiced",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.0,
+   "usage": []
+  },
+  {
+   "case_id": "C053",
+   "category": "amendment",
+   "description": "Booked after amendment; supplier invoiced old rate",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "60.00",
+   "predicted_delta": "60.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 9623.1,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2582.6,
+     "input_tokens": 834,
+     "output_tokens": 765,
+     "cost_usd": 0.0005841,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C054",
+   "category": "amendment",
+   "description": "Booked before amendment; old rate still applies",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.2,
+   "usage": []
+  },
+  {
+   "case_id": "C055",
+   "category": "amendment",
+   "description": "Booked on the amendment effective date",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.8,
+   "usage": []
+  },
+  {
+   "case_id": "C056",
+   "category": "amendment",
+   "description": "Booked day before amendment; old rate applies",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.9,
+   "usage": []
+  },
+  {
+   "case_id": "C057",
+   "category": "amendment",
+   "description": "Amendment does not cover this room; base contract applies",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.4,
+   "usage": []
+  },
+  {
+   "case_id": "C058",
+   "category": "amendment",
+   "description": "Stay straddles season after amendment; billed at old rate",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "60.00",
+   "predicted_delta": "60.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 9879.2,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2832.2,
+     "input_tokens": 838,
+     "output_tokens": 1115,
+     "cost_usd": 0.0007947000000000001,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C059",
+   "category": "amendment",
+   "description": "Booking before amendment, invoiced at amended rate (undercharge)",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "UNDERCHARGE"
+   ],
+   "predicted_codes": [
+    "UNDERCHARGE"
+   ],
+   "expected_delta": "-30.00",
+   "predicted_delta": "-30.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 10066.1,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1023.7,
+     "input_tokens": 675,
+     "output_tokens": 316,
+     "cost_usd": 0.00029085000000000005,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C060",
+   "category": "version_conflict",
+   "description": "Two amendments with same effective date disagree on rate",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "VERSION_CONFLICT"
+   ],
+   "predicted_codes": [
+    "VERSION_CONFLICT"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 4241.9,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1152.7,
+     "input_tokens": 546,
+     "output_tokens": 349,
+     "cost_usd": 0.00029130000000000003,
+     "attempts": 3,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C061",
+   "category": "version_conflict",
+   "description": "Two amendments with same effective date disagree on rate",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "VERSION_CONFLICT"
+   ],
+   "predicted_codes": [
+    "VERSION_CONFLICT"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 7037.4,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1948.7,
+     "input_tokens": 586,
+     "output_tokens": 452,
+     "cost_usd": 0.00035909999999999995,
+     "attempts": 3,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C062",
+   "category": "version_conflict",
+   "description": "Two amendments with same effective date disagree on rate",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "VERSION_CONFLICT"
+   ],
+   "predicted_codes": [
+    "VERSION_CONFLICT"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 4697.4,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1618.9,
+     "input_tokens": 626,
+     "output_tokens": 507,
+     "cost_usd": 0.0003981,
+     "attempts": 3,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C063",
+   "category": "version_conflict",
+   "description": "Conflicting amendments exist but booking predates them (base applies)",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.5,
+   "usage": []
+  },
+  {
+   "case_id": "C064",
+   "category": "version_conflict",
+   "description": "Conflict only affects Deluxe River; Executive Suite unaffected",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "80.00",
+   "predicted_delta": "80.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 5337.0,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2297.1,
+     "input_tokens": 643,
+     "output_tokens": 684,
+     "cost_usd": 0.00050685,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C065",
+   "category": "unreadable",
+   "description": "Contract rate is illegible (OCR damage)",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "UNREADABLE_RATE"
+   ],
+   "predicted_codes": [
+    "UNREADABLE_RATE"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 7269.9,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2220.2,
+     "input_tokens": 520,
+     "output_tokens": 753,
+     "cost_usd": 0.0005298,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C066",
+   "category": "unreadable",
+   "description": "Contract rate is illegible (OCR damage)",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "UNREADABLE_RATE"
+   ],
+   "predicted_codes": [
+    "UNREADABLE_RATE"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 16076.0,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 9034.8,
+     "input_tokens": 547,
+     "output_tokens": 717,
+     "cost_usd": 0.00051225,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C067",
+   "category": "unreadable",
+   "description": "Contract rate is illegible (OCR damage)",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "UNREADABLE_RATE"
+   ],
+   "predicted_codes": [
+    "UNREADABLE_RATE"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 2151.2,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2149.8,
+     "input_tokens": 493,
+     "output_tokens": 519,
+     "cost_usd": 0.00038534999999999996,
+     "attempts": 1,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C068",
+   "category": "unreadable",
+   "description": "Illegible row elsewhere; this season is legible",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.0,
+   "usage": []
+  },
+  {
+   "case_id": "C069",
+   "category": "unreadable",
+   "description": "Illegible row elsewhere; this season is legible, overcharged",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "30.00",
+   "predicted_delta": "30.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 7782.5,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2742.4,
+     "input_tokens": 668,
+     "output_tokens": 984,
+     "cost_usd": 0.0006906,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C070",
+   "category": "injection",
+   "description": "Injection in contract; invoice actually correct",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "MATCH",
+    "SUSPECTED_INJECTION"
+   ],
+   "predicted_codes": [
+    "MATCH",
+    "SUSPECTED_INJECTION"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 7774.1,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1734.1,
+     "input_tokens": 787,
+     "output_tokens": 467,
+     "cost_usd": 0.00039825,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C071",
+   "category": "injection",
+   "description": "Injection in contract; invoice overcharged",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "OVERCHARGE",
+    "SUSPECTED_INJECTION"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE",
+    "SUSPECTED_INJECTION"
+   ],
+   "expected_delta": "45.00",
+   "predicted_delta": "45.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 10862.9,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1683.8,
+     "input_tokens": 793,
+     "output_tokens": 505,
+     "cost_usd": 0.00042195,
+     "attempts": 3,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C072",
+   "category": "injection",
+   "description": "Injection in contract; invoice billed at injected 999 rate",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "OVERCHARGE",
+    "SUSPECTED_INJECTION"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE",
+    "SUSPECTED_INJECTION"
+   ],
+   "expected_delta": "1538.00",
+   "predicted_delta": "1538.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 6721.7,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1675.4,
+     "input_tokens": 717,
+     "output_tokens": 564,
+     "cost_usd": 0.00044594999999999997,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C073",
+   "category": "injection",
+   "description": "Injection in booking notes; invoice overcharged",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "OVERCHARGE",
+    "SUSPECTED_INJECTION"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE",
+    "SUSPECTED_INJECTION"
+   ],
+   "expected_delta": "90.00",
+   "predicted_delta": "90.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 7409.2,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1366.4,
+     "input_tokens": 763,
+     "output_tokens": 361,
+     "cost_usd": 0.00033105,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C074",
+   "category": "injection",
+   "description": "Injection in booking notes; invoice correct",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "MATCH",
+    "SUSPECTED_INJECTION"
+   ],
+   "predicted_codes": [
+    "MATCH",
+    "SUSPECTED_INJECTION"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 6962.5,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1854.5,
+     "input_tokens": 703,
+     "output_tokens": 655,
+     "cost_usd": 0.00049845,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C075",
+   "category": "injection",
+   "description": "Benign notes that mention 'approved' (FP trap for scanner)",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.2,
+   "usage": []
+  },
+  {
+   "case_id": "C076",
+   "category": "currency",
+   "description": "Invoice currency differs from contract; no FX rate supplied",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "CURRENCY_MISMATCH"
+   ],
+   "predicted_codes": [
+    "CURRENCY_MISMATCH"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 6860.8,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1819.3,
+     "input_tokens": 485,
+     "output_tokens": 695,
+     "cost_usd": 0.00048975,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C077",
+   "category": "currency",
+   "description": "Invoice currency differs from contract; no FX rate supplied",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "CURRENCY_MISMATCH"
+   ],
+   "predicted_codes": [
+    "CURRENCY_MISMATCH"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 9390.8,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2349.9,
+     "input_tokens": 485,
+     "output_tokens": 721,
+     "cost_usd": 0.00050535,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C078",
+   "category": "currency",
+   "description": "Invoice currency differs from contract; no FX rate supplied",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "CURRENCY_MISMATCH"
+   ],
+   "predicted_codes": [
+    "CURRENCY_MISMATCH"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 1973.4,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1971.4,
+     "input_tokens": 486,
+     "output_tokens": 631,
+     "cost_usd": 0.00045149999999999997,
+     "attempts": 1,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C079",
+   "category": "rate_not_found",
+   "description": "Booked room/meal/occupancy not in contract",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "predicted_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 5941.1,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1897.5,
+     "input_tokens": 505,
+     "output_tokens": 654,
+     "cost_usd": 0.00046814999999999997,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C080",
+   "category": "rate_not_found",
+   "description": "Booked room/meal/occupancy not in contract",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "predicted_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 6876.9,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1836.3,
+     "input_tokens": 502,
+     "output_tokens": 675,
+     "cost_usd": 0.0004803,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C081",
+   "category": "rate_not_found",
+   "description": "Booked room/meal/occupancy not in contract",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "predicted_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 8000.5,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1961.3,
+     "input_tokens": 503,
+     "output_tokens": 647,
+     "cost_usd": 0.00046364999999999997,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C082",
+   "category": "rate_not_found",
+   "description": "Booked room/meal/occupancy not in contract",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "predicted_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 10311.5,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2196.1,
+     "input_tokens": 504,
+     "output_tokens": 755,
+     "cost_usd": 0.0005286000000000001,
+     "attempts": 3,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C083",
+   "category": "rate_not_found",
+   "description": "Stay dates outside every contracted season",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "predicted_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 4096.1,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2055.1,
+     "input_tokens": 502,
+     "output_tokens": 752,
+     "cost_usd": 0.0005265,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C084",
+   "category": "no_contract",
+   "description": "Booking made before the contract took effect",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "NO_APPLICABLE_CONTRACT"
+   ],
+   "predicted_codes": [
+    "NO_APPLICABLE_CONTRACT"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 7475.3,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1387.7,
+     "input_tokens": 482,
+     "output_tokens": 482,
+     "cost_usd": 0.0003615,
+     "attempts": 3,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C085",
+   "category": "missing_field",
+   "description": "Booking record missing meal_plan",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "predicted_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 8853.2,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1811.9,
+     "input_tokens": 471,
+     "output_tokens": 602,
+     "cost_usd": 0.00043184999999999995,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C086",
+   "category": "missing_field",
+   "description": "Booking record missing invoiced_total",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "predicted_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 2790.7,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1750.9,
+     "input_tokens": 473,
+     "output_tokens": 603,
+     "cost_usd": 0.00043275,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C087",
+   "category": "missing_field",
+   "description": "Booking record missing booking_date",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "predicted_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 11557.7,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2517.8,
+     "input_tokens": 472,
+     "output_tokens": 549,
+     "cost_usd": 0.00040019999999999997,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C088",
+   "category": "missing_field",
+   "description": "Booking record missing occupancy",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "predicted_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 1682.6,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1680.1,
+     "input_tokens": 469,
+     "output_tokens": 593,
+     "cost_usd": 0.00042615,
+     "attempts": 1,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C089",
+   "category": "missing_field",
+   "description": "Checkout before check-in (data entry error)",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "predicted_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 12097.5,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1978.8,
+     "input_tokens": 477,
+     "output_tokens": 708,
+     "cost_usd": 0.00049635,
+     "attempts": 3,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C090",
+   "category": "cancellation",
+   "description": "Cancelled inside free window, no fee",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.0,
+   "usage": []
+  },
+  {
+   "case_id": "C091",
+   "category": "cancellation",
+   "description": "Cancelled inside free window but fee charged",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "145.00",
+   "predicted_delta": "145.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 6649.0,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1606.8,
+     "input_tokens": 493,
+     "output_tokens": 564,
+     "cost_usd": 0.00041234999999999997,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C092",
+   "category": "cancellation",
+   "description": "Late cancellation, 1-night fee correct",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.1,
+   "usage": []
+  },
+  {
+   "case_id": "C093",
+   "category": "cancellation",
+   "description": "Late cancellation, supplier charged full stay",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "240.00",
+   "predicted_delta": "240.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 4293.6,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2254.6,
+     "input_tokens": 569,
+     "output_tokens": 827,
+     "cost_usd": 0.0005815499999999999,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C094",
+   "category": "cancellation",
+   "description": "Cancelled exactly at free-cancellation boundary",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.2,
+   "usage": []
+  },
+  {
+   "case_id": "C095",
+   "category": "cancellation",
+   "description": "Cancelled one day inside penalty window, boundary fee correct",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.4,
+   "usage": []
+  },
+  {
+   "case_id": "C096",
+   "category": "cancellation",
+   "description": "2-night penalty, correct, 2 rooms",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.5,
+   "usage": []
+  },
+  {
+   "case_id": "C097",
+   "category": "cancellation",
+   "description": "2-night penalty, supplier charged 3 nights",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "205.00",
+   "predicted_delta": "205.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 15306.4,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2264.8,
+     "input_tokens": 659,
+     "output_tokens": 867,
+     "cost_usd": 0.00061905,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C098",
+   "category": "cancellation",
+   "description": "Penalty crosses season change",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.0,
+   "usage": []
+  },
+  {
+   "case_id": "C099",
+   "category": "cancellation",
+   "description": "Late cancellation at amended rate (booked after amendment)",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.4,
+   "usage": []
+  },
+  {
+   "case_id": "C100",
+   "category": "cancellation",
+   "description": "Cancelled booking with no cancellation date recorded",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "predicted_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 2406.9,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 1358.0,
+     "input_tokens": 474,
+     "output_tokens": 438,
+     "cost_usd": 0.0003339,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  },
+  {
+   "case_id": "C101",
+   "category": "multi_room",
+   "description": "3 rooms correctly invoiced",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "template",
+   "narrative_rejected": null,
+   "latency_ms": 1.0,
+   "usage": []
+  },
+  {
+   "case_id": "C102",
+   "category": "multi_room",
+   "description": "2 rooms, invoice includes an extra room-night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "260.00",
+   "predicted_delta": "260.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": "groq",
+   "narrative_rejected": null,
+   "latency_ms": 12244.1,
+   "usage": [
+    {
+     "provider": "groq",
+     "model": "openai/gpt-oss-120b",
+     "latency_ms": 2202.0,
+     "input_tokens": 720,
+     "output_tokens": 625,
+     "cost_usd": 0.000483,
+     "attempts": 2,
+     "structured_mode": "json_schema_strict",
+     "fallback_from": null,
+     "stage": "narrative"
+    }
+   ]
+  }
+ ]
+}

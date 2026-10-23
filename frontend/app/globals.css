@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: #f8fafc;
+  color: #0f172a;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+mark.ev {
+  background: #fef3c7;
+  box-shadow: inset 0 -2px 0 #f59e0b;
+  color: inherit;
+  border-radius: 2px;
+}
+mark.ev-bad {
+  background: #ffe4e6;
+  box-shadow: inset 0 -2px 0 #e11d48;
+}
+mark.ev-inj {
+  background: #fee2e2;
+  box-shadow: inset 0 -2px 0 #b91c1c;
+}
