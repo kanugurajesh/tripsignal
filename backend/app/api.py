@@ -141,7 +141,8 @@ def create_app(settings: Settings | None = None, provider: LLMProvider | None = 
         today = as_of()
         return [{
             "id": c.id, "booking_id": c.booking_id, "hotel_id": c.hotel_id, "route": c.route, "status": c.status,
-            "severity": c.severity, "codes": c.result["codes"], "kind": c.result["kind"], "currency": c.currency,
+            "severity": c.severity, "codes": c.result["codes"], "kind": c.result["kind"],
+            "traveller_events": c.result.get("traveller_events", []), "currency": c.currency,
             "delta": c.delta, "dispute_deadline": c.dispute_deadline,
             "days_to_deadline": (c.dispute_deadline - today).days if c.dispute_deadline else None,
             "guest_name": c.booking.get("guest_name"), "room_type": c.booking.get("room_type"),

@@ -39,7 +39,7 @@ def score_extraction(doc_id: str, gold: dict[str, Any], terms: ContractTerms | N
     if terms is None:
         return {"document_id": doc_id, "ok": False, "error": error, "gold_rows": len(gold_rows), "correct_rows": 0,
                 "spurious_rows": 0, "extracted_rows": 0, "verified_rows": 0, "effective_correct": False,
-                "cancellation_correct": False}
+                "cancellation_correct": False, "stay_policies_correct": False}
     got = {}
     for r in terms.rates:
         got[_key(r)] = r
@@ -49,13 +49,19 @@ def score_extraction(doc_id: str, gold: dict[str, Any], terms: ContractTerms | N
         gc is not None and terms.cancellation is not None
         and (gc["free_cancellation_days"], gc["penalty_nights"])
         == (terms.cancellation.free_cancellation_days, terms.cancellation.penalty_nights))
+    policies_ok = all(
+        (gold.get(k) is None and getattr(terms, k) is None) or (
+            gold.get(k) is not None and getattr(terms, k) is not None
+            and {f: v for f, v in gold[k].items() if f != "evidence"}
+            == getattr(terms, k).model_dump(exclude={"evidence"}))
+        for k in ("no_show", "early_departure", "upgrade"))
     return {
         "document_id": doc_id, "ok": True, "error": None, "gold_rows": len(gold_rows), "correct_rows": correct,
         "extracted_rows": len(terms.rates), "spurious_rows": sum(1 for k in got if k not in gold_rows),
         "verified_rows": sum(1 for r in terms.rates if r.evidence.verified),
         "unverified_examples": [r.evidence.reason for r in terms.rates if not r.evidence.verified][:3],
         "effective_correct": str(terms.effective_from) == gold["effective"]["effective_from"],
-        "cancellation_correct": canc_ok, "schema_errors": terms.schema_errors,
+        "cancellation_correct": canc_ok, "stay_policies_correct": policies_ok, "schema_errors": terms.schema_errors,
     }
 
 
@@ -148,6 +154,7 @@ def summarize(rows: list[dict], docs: list[dict], extraction_usage: list[dict]) 
         "evidence_verified_rate": _ratio(sum(d["verified_rows"] for d in docs), extracted),
         "effective_date_accuracy": _ratio(sum(d["effective_correct"] for d in docs), len(docs)),
         "cancellation_terms_accuracy": _ratio(sum(d["cancellation_correct"] for d in docs), len(docs)),
+        "stay_policy_accuracy": _ratio(sum(d.get("stay_policies_correct", False) for d in docs), len(docs)),
         "narratives_attempted": len(narr),
         "narratives_from_llm": sum(1 for r in narr if r["narrative_source"] not in ("template", None)),
         "narratives_rejected_unsupported_numbers": sum(1 for r in narr if (r["narrative_rejected"] or "").startswith("unsupported")),

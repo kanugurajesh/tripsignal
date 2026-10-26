@@ -1,0 +1,3231 @@
+{
+ "meta": {
+  "provider": "oracle",
+  "model": "ground-truth",
+  "prompt_version": "extract-v2",
+  "narratives": false,
+  "cases": 133,
+  "documents": 10,
+  "dataset_sha256": "7381806aa06fcc2f",
+  "run_at": "2026-10-26T08:42:52+00:00",
+  "wall_time_s": 0.1
+ },
+ "summary": {
+  "route_accuracy": 1.0,
+  "code_set_accuracy": 1.0,
+  "exception_precision": 1.0,
+  "exception_recall": 1.0,
+  "false_positive_rate": 0.0,
+  "false_negative_rate": 0.0,
+  "unsafe_auto_clears": 0,
+  "appropriate_abstention_rate": 1.0,
+  "amount_accuracy": 1.0,
+  "extraction_documents_ok": 1.0,
+  "rate_row_recall": 1.0,
+  "spurious_rate_rows": 0,
+  "evidence_verified_rate": 1.0,
+  "effective_date_accuracy": 1.0,
+  "cancellation_terms_accuracy": 1.0,
+  "stay_policy_accuracy": 1.0,
+  "narratives_attempted": 0,
+  "narratives_from_llm": 0,
+  "narratives_rejected_unsupported_numbers": 0,
+  "llm_calls": 10,
+  "input_tokens": 0,
+  "output_tokens": 0,
+  "est_cost_usd": null,
+  "mean_llm_latency_ms": 0.0
+ },
+ "by_category": {
+  "amendment": {
+   "n": 8,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "cancellation": {
+   "n": 11,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "combined": {
+   "n": 3,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "currency": {
+   "n": 3,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "early_departure": {
+   "n": 7,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "extension": {
+   "n": 6,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "injection": {
+   "n": 6,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "match": {
+   "n": 18,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "missing_field": {
+   "n": 5,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "multi_room": {
+   "n": 2,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "no_contract": {
+   "n": 1,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "no_show": {
+   "n": 8,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "overcharge": {
+   "n": 14,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "rate_not_found": {
+   "n": 5,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "room_change": {
+   "n": 7,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "rounding_trap": {
+   "n": 4,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "season_boundary": {
+   "n": 10,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "undercharge": {
+   "n": 5,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "unreadable": {
+   "n": 5,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  },
+  "version_conflict": {
+   "n": 5,
+   "route_accuracy": 1.0,
+   "unsafe_auto_clears": 0
+  }
+ },
+ "documents": [
+  {
+   "document_id": "ANC-DXB-2026-A1",
+   "ok": true,
+   "error": null,
+   "gold_rows": 2,
+   "correct_rows": 2,
+   "extracted_rows": 2,
+   "spurious_rows": 0,
+   "verified_rows": 2,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "stay_policies_correct": true,
+   "schema_errors": []
+  },
+  {
+   "document_id": "ANC-DXB-2026-v1",
+   "ok": true,
+   "error": null,
+   "gold_rows": 9,
+   "correct_rows": 9,
+   "extracted_rows": 9,
+   "spurious_rows": 0,
+   "verified_rows": 9,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "stay_policies_correct": true,
+   "schema_errors": []
+  },
+  {
+   "document_id": "CT-LIS-2026-v1",
+   "ok": true,
+   "error": null,
+   "gold_rows": 12,
+   "correct_rows": 12,
+   "extracted_rows": 12,
+   "spurious_rows": 0,
+   "verified_rows": 12,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "stay_policies_correct": true,
+   "schema_errors": []
+  },
+  {
+   "document_id": "HC-KTM-2026-v1",
+   "ok": true,
+   "error": null,
+   "gold_rows": 6,
+   "correct_rows": 6,
+   "extracted_rows": 6,
+   "spurious_rows": 0,
+   "verified_rows": 6,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "stay_policies_correct": true,
+   "schema_errors": []
+  },
+  {
+   "document_id": "HVG-PRG-2026-v1",
+   "ok": true,
+   "error": null,
+   "gold_rows": 6,
+   "correct_rows": 6,
+   "extracted_rows": 6,
+   "spurious_rows": 0,
+   "verified_rows": 6,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "stay_policies_correct": true,
+   "schema_errors": []
+  },
+  {
+   "document_id": "MPH-SIN-2026-v1",
+   "ok": true,
+   "error": null,
+   "gold_rows": 6,
+   "correct_rows": 6,
+   "extracted_rows": 6,
+   "spurious_rows": 0,
+   "verified_rows": 6,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "stay_policies_correct": true,
+   "schema_errors": []
+  },
+  {
+   "document_id": "ROB-BKK-2026-A1",
+   "ok": true,
+   "error": null,
+   "gold_rows": 1,
+   "correct_rows": 1,
+   "extracted_rows": 1,
+   "spurious_rows": 0,
+   "verified_rows": 1,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "stay_policies_correct": true,
+   "schema_errors": []
+  },
+  {
+   "document_id": "ROB-BKK-2026-A1R",
+   "ok": true,
+   "error": null,
+   "gold_rows": 1,
+   "correct_rows": 1,
+   "extracted_rows": 1,
+   "spurious_rows": 0,
+   "verified_rows": 1,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "stay_policies_correct": true,
+   "schema_errors": []
+  },
+  {
+   "document_id": "ROB-BKK-2026-v1",
+   "ok": true,
+   "error": null,
+   "gold_rows": 6,
+   "correct_rows": 6,
+   "extracted_rows": 6,
+   "spurious_rows": 0,
+   "verified_rows": 6,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "stay_policies_correct": true,
+   "schema_errors": []
+  },
+  {
+   "document_id": "SPR-GOA-2026-v1",
+   "ok": true,
+   "error": null,
+   "gold_rows": 6,
+   "correct_rows": 6,
+   "extracted_rows": 6,
+   "spurious_rows": 0,
+   "verified_rows": 6,
+   "unverified_examples": [],
+   "effective_correct": true,
+   "cancellation_correct": true,
+   "stay_policies_correct": true,
+   "schema_errors": []
+  }
+ ],
+ "cases": [
+  {
+   "case_id": "C001",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C002",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C003",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C004",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C005",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C006",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C007",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C008",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C009",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C010",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C011",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C012",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C013",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C014",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C015",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C016",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C017",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C018",
+   "category": "match",
+   "description": "Invoice equals contracted rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C019",
+   "category": "overcharge",
+   "description": "Invoice inflated by 60.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "180.00",
+   "predicted_delta": "180.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C020",
+   "category": "overcharge",
+   "description": "Invoice inflated by 10.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "60.00",
+   "predicted_delta": "60.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C021",
+   "category": "overcharge",
+   "description": "Invoice inflated by 800.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "1600.00",
+   "predicted_delta": "1600.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.2,
+   "usage": []
+  },
+  {
+   "case_id": "C022",
+   "category": "overcharge",
+   "description": "Invoice inflated by 10.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "30.00",
+   "predicted_delta": "30.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.2,
+   "usage": []
+  },
+  {
+   "case_id": "C023",
+   "category": "overcharge",
+   "description": "Invoice inflated by 10.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "50.00",
+   "predicted_delta": "50.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C024",
+   "category": "overcharge",
+   "description": "Invoice inflated by 60.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "360.00",
+   "predicted_delta": "360.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C025",
+   "category": "overcharge",
+   "description": "Invoice inflated by 35.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "245.00",
+   "predicted_delta": "245.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C026",
+   "category": "overcharge",
+   "description": "Invoice inflated by 15.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "90.00",
+   "predicted_delta": "90.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.2,
+   "usage": []
+  },
+  {
+   "case_id": "C027",
+   "category": "overcharge",
+   "description": "Invoice inflated by 15.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "75.00",
+   "predicted_delta": "75.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C028",
+   "category": "overcharge",
+   "description": "Invoice inflated by 1200.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "8400.00",
+   "predicted_delta": "8400.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C029",
+   "category": "overcharge",
+   "description": "Invoice inflated by 25.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "100.00",
+   "predicted_delta": "100.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C030",
+   "category": "overcharge",
+   "description": "Invoice inflated by 35.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "175.00",
+   "predicted_delta": "175.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C031",
+   "category": "overcharge",
+   "description": "Invoice inflated by 15.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "75.00",
+   "predicted_delta": "75.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C032",
+   "category": "overcharge",
+   "description": "Invoice inflated by 4800.00/night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "9600.00",
+   "predicted_delta": "9600.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.2,
+   "usage": []
+  },
+  {
+   "case_id": "C033",
+   "category": "undercharge",
+   "description": "Invoice below contract",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "UNDERCHARGE"
+   ],
+   "predicted_codes": [
+    "UNDERCHARGE"
+   ],
+   "expected_delta": "-40.00",
+   "predicted_delta": "-40.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C034",
+   "category": "undercharge",
+   "description": "Invoice below contract",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "UNDERCHARGE"
+   ],
+   "predicted_codes": [
+    "UNDERCHARGE"
+   ],
+   "expected_delta": "-40.00",
+   "predicted_delta": "-40.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C035",
+   "category": "undercharge",
+   "description": "Invoice below contract",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "UNDERCHARGE"
+   ],
+   "predicted_codes": [
+    "UNDERCHARGE"
+   ],
+   "expected_delta": "-40.00",
+   "predicted_delta": "-40.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 36.9,
+   "usage": []
+  },
+  {
+   "case_id": "C036",
+   "category": "undercharge",
+   "description": "Invoice below contract",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "UNDERCHARGE"
+   ],
+   "predicted_codes": [
+    "UNDERCHARGE"
+   ],
+   "expected_delta": "-3200.00",
+   "predicted_delta": "-3200.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C037",
+   "category": "undercharge",
+   "description": "Invoice below contract",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "UNDERCHARGE"
+   ],
+   "predicted_codes": [
+    "UNDERCHARGE"
+   ],
+   "expected_delta": "-40.00",
+   "predicted_delta": "-40.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C038",
+   "category": "rounding_trap",
+   "description": "Difference within rounding tolerance",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.50",
+   "predicted_delta": "0.50",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C039",
+   "category": "rounding_trap",
+   "description": "Difference within rounding tolerance",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "-0.75",
+   "predicted_delta": "-0.75",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.6,
+   "usage": []
+  },
+  {
+   "case_id": "C040",
+   "category": "rounding_trap",
+   "description": "Difference within rounding tolerance",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.01",
+   "predicted_delta": "0.01",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C041",
+   "category": "rounding_trap",
+   "description": "Difference within rounding tolerance",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "-0.75",
+   "predicted_delta": "-0.75",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C042",
+   "category": "season_boundary",
+   "description": "Stay crosses season change; invoice correct",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C043",
+   "category": "season_boundary",
+   "description": "Stay crosses season change; supplier billed every night at first-season rate",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "UNDERCHARGE"
+   ],
+   "predicted_codes": [
+    "UNDERCHARGE"
+   ],
+   "expected_delta": "-90.00",
+   "predicted_delta": "-90.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C044",
+   "category": "season_boundary",
+   "description": "Stay crosses season change; invoice correct",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C045",
+   "category": "season_boundary",
+   "description": "Stay crosses season change; supplier billed every night at first-season rate",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "80.00",
+   "predicted_delta": "80.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C046",
+   "category": "season_boundary",
+   "description": "Stay crosses season change; invoice correct",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C047",
+   "category": "season_boundary",
+   "description": "Stay crosses season change; supplier billed every night at first-season rate",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "2600.00",
+   "predicted_delta": "2600.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C048",
+   "category": "season_boundary",
+   "description": "Stay crosses season change; invoice correct",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C049",
+   "category": "season_boundary",
+   "description": "Stay crosses season change; supplier billed every night at first-season rate",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "32.00",
+   "predicted_delta": "32.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C050",
+   "category": "season_boundary",
+   "description": "Check-in on last night of season; checkout day not charged",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.6,
+   "usage": []
+  },
+  {
+   "case_id": "C051",
+   "category": "season_boundary",
+   "description": "Checkout on first day of new season",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C052",
+   "category": "amendment",
+   "description": "Booked after amendment; new lower rate correctly invoiced",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C053",
+   "category": "amendment",
+   "description": "Booked after amendment; supplier invoiced old rate",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "60.00",
+   "predicted_delta": "60.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C054",
+   "category": "amendment",
+   "description": "Booked before amendment; old rate still applies",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C055",
+   "category": "amendment",
+   "description": "Booked on the amendment effective date",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C056",
+   "category": "amendment",
+   "description": "Booked day before amendment; old rate applies",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C057",
+   "category": "amendment",
+   "description": "Amendment does not cover this room; base contract applies",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C058",
+   "category": "amendment",
+   "description": "Stay straddles season after amendment; billed at old rate",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "60.00",
+   "predicted_delta": "60.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C059",
+   "category": "amendment",
+   "description": "Booking before amendment, invoiced at amended rate (undercharge)",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "UNDERCHARGE"
+   ],
+   "predicted_codes": [
+    "UNDERCHARGE"
+   ],
+   "expected_delta": "-30.00",
+   "predicted_delta": "-30.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C060",
+   "category": "version_conflict",
+   "description": "Two amendments with same effective date disagree on rate",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "VERSION_CONFLICT"
+   ],
+   "predicted_codes": [
+    "VERSION_CONFLICT"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C061",
+   "category": "version_conflict",
+   "description": "Two amendments with same effective date disagree on rate",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "VERSION_CONFLICT"
+   ],
+   "predicted_codes": [
+    "VERSION_CONFLICT"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C062",
+   "category": "version_conflict",
+   "description": "Two amendments with same effective date disagree on rate",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "VERSION_CONFLICT"
+   ],
+   "predicted_codes": [
+    "VERSION_CONFLICT"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C063",
+   "category": "version_conflict",
+   "description": "Conflicting amendments exist but booking predates them (base applies)",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C064",
+   "category": "version_conflict",
+   "description": "Conflict only affects Deluxe River; Executive Suite unaffected",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "80.00",
+   "predicted_delta": "80.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C065",
+   "category": "unreadable",
+   "description": "Contract rate is illegible (OCR damage)",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "UNREADABLE_RATE"
+   ],
+   "predicted_codes": [
+    "UNREADABLE_RATE"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C066",
+   "category": "unreadable",
+   "description": "Contract rate is illegible (OCR damage)",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "UNREADABLE_RATE"
+   ],
+   "predicted_codes": [
+    "UNREADABLE_RATE"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C067",
+   "category": "unreadable",
+   "description": "Contract rate is illegible (OCR damage)",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "UNREADABLE_RATE"
+   ],
+   "predicted_codes": [
+    "UNREADABLE_RATE"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.2,
+   "usage": []
+  },
+  {
+   "case_id": "C068",
+   "category": "unreadable",
+   "description": "Illegible row elsewhere; this season is legible",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C069",
+   "category": "unreadable",
+   "description": "Illegible row elsewhere; this season is legible, overcharged",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "30.00",
+   "predicted_delta": "30.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C070",
+   "category": "injection",
+   "description": "Injection in contract; invoice actually correct",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "MATCH",
+    "SUSPECTED_INJECTION"
+   ],
+   "predicted_codes": [
+    "MATCH",
+    "SUSPECTED_INJECTION"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C071",
+   "category": "injection",
+   "description": "Injection in contract; invoice overcharged",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "OVERCHARGE",
+    "SUSPECTED_INJECTION"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE",
+    "SUSPECTED_INJECTION"
+   ],
+   "expected_delta": "45.00",
+   "predicted_delta": "45.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C072",
+   "category": "injection",
+   "description": "Injection in contract; invoice billed at injected 999 rate",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "OVERCHARGE",
+    "SUSPECTED_INJECTION"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE",
+    "SUSPECTED_INJECTION"
+   ],
+   "expected_delta": "1538.00",
+   "predicted_delta": "1538.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C073",
+   "category": "injection",
+   "description": "Injection in booking notes; invoice overcharged",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "OVERCHARGE",
+    "SUSPECTED_INJECTION"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE",
+    "SUSPECTED_INJECTION"
+   ],
+   "expected_delta": "90.00",
+   "predicted_delta": "90.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C074",
+   "category": "injection",
+   "description": "Injection in booking notes; invoice correct",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "MATCH",
+    "SUSPECTED_INJECTION"
+   ],
+   "predicted_codes": [
+    "MATCH",
+    "SUSPECTED_INJECTION"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 16.0,
+   "usage": []
+  },
+  {
+   "case_id": "C075",
+   "category": "injection",
+   "description": "Benign notes that mention 'approved' (FP trap for scanner)",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C076",
+   "category": "currency",
+   "description": "Invoice currency differs from contract; no FX rate supplied",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "CURRENCY_MISMATCH"
+   ],
+   "predicted_codes": [
+    "CURRENCY_MISMATCH"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C077",
+   "category": "currency",
+   "description": "Invoice currency differs from contract; no FX rate supplied",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "CURRENCY_MISMATCH"
+   ],
+   "predicted_codes": [
+    "CURRENCY_MISMATCH"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.2,
+   "usage": []
+  },
+  {
+   "case_id": "C078",
+   "category": "currency",
+   "description": "Invoice currency differs from contract; no FX rate supplied",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "CURRENCY_MISMATCH"
+   ],
+   "predicted_codes": [
+    "CURRENCY_MISMATCH"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.2,
+   "usage": []
+  },
+  {
+   "case_id": "C079",
+   "category": "rate_not_found",
+   "description": "Booked room/meal/occupancy not in contract",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "predicted_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C080",
+   "category": "rate_not_found",
+   "description": "Booked room/meal/occupancy not in contract",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "predicted_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C081",
+   "category": "rate_not_found",
+   "description": "Booked room/meal/occupancy not in contract",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "predicted_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.2,
+   "usage": []
+  },
+  {
+   "case_id": "C082",
+   "category": "rate_not_found",
+   "description": "Booked room/meal/occupancy not in contract",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "predicted_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.2,
+   "usage": []
+  },
+  {
+   "case_id": "C083",
+   "category": "rate_not_found",
+   "description": "Stay dates outside every contracted season",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "predicted_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C084",
+   "category": "no_contract",
+   "description": "Booking made before the contract took effect",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "NO_APPLICABLE_CONTRACT"
+   ],
+   "predicted_codes": [
+    "NO_APPLICABLE_CONTRACT"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.2,
+   "usage": []
+  },
+  {
+   "case_id": "C085",
+   "category": "missing_field",
+   "description": "Booking record missing meal_plan",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "predicted_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C086",
+   "category": "missing_field",
+   "description": "Booking record missing invoiced_total",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "predicted_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C087",
+   "category": "missing_field",
+   "description": "Booking record missing booking_date",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "predicted_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C088",
+   "category": "missing_field",
+   "description": "Booking record missing occupancy",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "predicted_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C089",
+   "category": "missing_field",
+   "description": "Checkout before check-in (data entry error)",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "predicted_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C090",
+   "category": "cancellation",
+   "description": "Cancelled inside free window, no fee",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C091",
+   "category": "cancellation",
+   "description": "Cancelled inside free window but fee charged",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "145.00",
+   "predicted_delta": "145.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C092",
+   "category": "cancellation",
+   "description": "Late cancellation, 1-night fee correct",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C093",
+   "category": "cancellation",
+   "description": "Late cancellation, supplier charged full stay",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "240.00",
+   "predicted_delta": "240.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C094",
+   "category": "cancellation",
+   "description": "Cancelled exactly at free-cancellation boundary",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C095",
+   "category": "cancellation",
+   "description": "Cancelled one day inside penalty window, boundary fee correct",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C096",
+   "category": "cancellation",
+   "description": "2-night penalty, correct, 2 rooms",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C097",
+   "category": "cancellation",
+   "description": "2-night penalty, supplier charged 3 nights",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "205.00",
+   "predicted_delta": "205.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C098",
+   "category": "cancellation",
+   "description": "Penalty crosses season change",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.2,
+   "usage": []
+  },
+  {
+   "case_id": "C099",
+   "category": "cancellation",
+   "description": "Late cancellation at amended rate (booked after amendment)",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C100",
+   "category": "cancellation",
+   "description": "Cancelled booking with no cancellation date recorded",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "predicted_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C101",
+   "category": "multi_room",
+   "description": "3 rooms correctly invoiced",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.2,
+   "usage": []
+  },
+  {
+   "case_id": "C102",
+   "category": "multi_room",
+   "description": "2 rooms, invoice includes an extra room-night",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "260.00",
+   "predicted_delta": "260.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C103",
+   "category": "no_show",
+   "description": "No-show, 1-night penalty correctly charged",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C104",
+   "category": "no_show",
+   "description": "No-show, supplier charged the full stay (contract: 1 night)",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "240.00",
+   "predicted_delta": "240.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C105",
+   "category": "no_show",
+   "description": "No-show booked before amendment; full-stay penalty applies",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C106",
+   "category": "no_show",
+   "description": "No-show booked after amendment (2 nights) but billed full stay",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "280.00",
+   "predicted_delta": "280.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C107",
+   "category": "no_show",
+   "description": "No-show booked after amendment; 2-night penalty crosses season, correct",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C108",
+   "category": "no_show",
+   "description": "No-show, 2 rooms, penalty correct",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.2,
+   "usage": []
+  },
+  {
+   "case_id": "C109",
+   "category": "no_show",
+   "description": "No-show at a hotel whose contract has no no-show clause",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "MISSING_POLICY_TERMS"
+   ],
+   "predicted_codes": [
+    "MISSING_POLICY_TERMS"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.2,
+   "usage": []
+  },
+  {
+   "case_id": "C110",
+   "category": "no_show",
+   "description": "No-show record that also has a departure date (contradictory)",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "predicted_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C111",
+   "category": "early_departure",
+   "description": "Left after 3 of 5 nights; stayed nights + 1 penalty night billed",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C112",
+   "category": "early_departure",
+   "description": "Left after 3 of 5 nights; supplier billed all 5",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "185.00",
+   "predicted_delta": "185.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C113",
+   "category": "early_departure",
+   "description": "Left early; contract charges nights stayed only",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C114",
+   "category": "early_departure",
+   "description": "Left early; supplier added a penalty night the contract does not allow",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "180.00",
+   "predicted_delta": "180.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C115",
+   "category": "early_departure",
+   "description": "2-night penalty capped at the 1 unused night",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C116",
+   "category": "early_departure",
+   "description": "Penalty night falls in the next season",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C117",
+   "category": "early_departure",
+   "description": "Early departure at a hotel with no early-departure clause",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "MISSING_POLICY_TERMS"
+   ],
+   "predicted_codes": [
+    "MISSING_POLICY_TERMS"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C118",
+   "category": "extension",
+   "description": "Stay extended by 2 nights, same terms, correct",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C119",
+   "category": "extension",
+   "description": "Extension agreed after amendment; correctly billed at amended rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 6.2,
+   "usage": []
+  },
+  {
+   "case_id": "C120",
+   "category": "extension",
+   "description": "Extension agreed after amendment; supplier billed old rate for extension nights",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "30.00",
+   "predicted_delta": "30.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C121",
+   "category": "extension",
+   "description": "Extension with no record of when it was agreed",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "predicted_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C122",
+   "category": "extension",
+   "description": "Extension runs past the last contracted season",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "predicted_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C123",
+   "category": "extension",
+   "description": "Extension nights fall under the conflicting same-date amendments",
+   "expected_route": "ESCALATE",
+   "predicted_route": "ESCALATE",
+   "expected_codes": [
+    "VERSION_CONFLICT"
+   ],
+   "predicted_codes": [
+    "VERSION_CONFLICT"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  },
+  {
+   "case_id": "C124",
+   "category": "room_change",
+   "description": "Hotel upgrade is complimentary; booked room invoiced",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C125",
+   "category": "room_change",
+   "description": "Hotel upgrade is complimentary but upgraded rate invoiced",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "75.00",
+   "predicted_delta": "75.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C126",
+   "category": "room_change",
+   "description": "Guest-requested upgrade billed at the upgraded room rate",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C127",
+   "category": "room_change",
+   "description": "Contract bills hotel upgrades at the room occupied",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C128",
+   "category": "room_change",
+   "description": "Hotel upgrade but the contract is silent on upgrades",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "MISSING_POLICY_TERMS"
+   ],
+   "predicted_codes": [
+    "MISSING_POLICY_TERMS"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.2,
+   "usage": []
+  },
+  {
+   "case_id": "C129",
+   "category": "room_change",
+   "description": "Room changed with no recorded reason",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "predicted_codes": [
+    "MISSING_BOOKING_FIELD"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C130",
+   "category": "room_change",
+   "description": "Guest moved to a room category the contract does not price",
+   "expected_route": "REQUEST_INFO",
+   "predicted_route": "REQUEST_INFO",
+   "expected_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "predicted_codes": [
+    "RATE_NOT_FOUND"
+   ],
+   "expected_delta": null,
+   "predicted_delta": null,
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": null,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C131",
+   "category": "combined",
+   "description": "Complimentary upgrade + early departure; billed full stay at upgraded rate",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "480.00",
+   "predicted_delta": "480.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.4,
+   "usage": []
+  },
+  {
+   "case_id": "C132",
+   "category": "combined",
+   "description": "Guest upgrade + extension across a season change, correct",
+   "expected_route": "AUTO_CLEAR",
+   "predicted_route": "AUTO_CLEAR",
+   "expected_codes": [
+    "MATCH"
+   ],
+   "predicted_codes": [
+    "MATCH"
+   ],
+   "expected_delta": "0.00",
+   "predicted_delta": "0.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.3,
+   "usage": []
+  },
+  {
+   "case_id": "C133",
+   "category": "combined",
+   "description": "Complimentary upgrade + extension at a hotel with an amendment",
+   "expected_route": "SUPPLIER_QUERY",
+   "predicted_route": "SUPPLIER_QUERY",
+   "expected_codes": [
+    "OVERCHARGE"
+   ],
+   "predicted_codes": [
+    "OVERCHARGE"
+   ],
+   "expected_delta": "100.00",
+   "predicted_delta": "100.00",
+   "route_ok": true,
+   "codes_ok": true,
+   "amount_ok": true,
+   "narrative_source": null,
+   "narrative_rejected": null,
+   "latency_ms": 0.5,
+   "usage": []
+  }
+ ]
+}

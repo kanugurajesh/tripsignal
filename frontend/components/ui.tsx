@@ -1,5 +1,5 @@
-import type { Route } from "@/lib/api";
-import { ROUTE_LABEL, STATUS_LABEL } from "@/lib/api";
+import type { Route, TravellerEvent } from "@/lib/api";
+import { EVENT_LABEL, ROUTE_LABEL, STATUS_LABEL } from "@/lib/api";
 
 const ROUTE_STYLE: Record<Route, string> = {
   AUTO_CLEAR: "bg-emerald-50 text-emerald-800 ring-emerald-200",
@@ -14,6 +14,10 @@ export function RouteBadge({ route }: { route: Route }) {
       {ROUTE_LABEL[route]}
     </span>
   );
+}
+
+export function EventTag({ event }: { event: TravellerEvent }) {
+  return <span className="rounded bg-sky-50 px-1.5 py-0.5 text-[10px] font-medium text-sky-800 ring-1 ring-sky-200">{EVENT_LABEL[event] ?? event}</span>;
 }
 
 export function StatusPill({ status }: { status: string }) {

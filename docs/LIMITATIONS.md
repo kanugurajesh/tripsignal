@@ -1,7 +1,7 @@
 # Limitations and unsupported assumptions
 
 ## Evaluation status (honest)
-- **Groq (`openai/gpt-oss-120b`) has been evaluated end to end:** 102/102 routes correct and 0 unsafe auto-clears. **OpenAI has not:** the key returns `insufficient_quota`, so there is no provider comparison yet.
+- **Groq (`openai/gpt-oss-120b`) has been evaluated end to end on the earlier 102-case dataset:** 102/102 routes correct and 0 unsafe auto-clears. It has **not yet been rerun** on the 133-case dataset, which adds the traveller-flow cases and the `extract-v2` prompt (no-show, early-departure and upgrade clauses). Only the oracle run covers those today. **OpenAI has not been evaluated:** the key returns `insufficient_quota`, so there is no provider comparison yet.
 - Groq free-tier rate limits make a full run slow (retries wait for `retry-after`). Use `--workers 1`.
 - Extraction quality is measured over only **10 contract documents** (7 hotels, 3 formatting styles). That is enough to exercise the pipeline, but too few to generalize about model quality. More document variants are the top dataset improvement.
 - Expected outcomes are computed by the generator's own arithmetic from the scenario spec. It is independent of the engine's code, but it was written by the same author with the same rule interpretation (D3). A domain expert should review the rules.
@@ -10,6 +10,8 @@
 - Contracts are plain text. There is no PDF or OCR ingestion. "Unreadable" cases simulate OCR damage in text.
 - Rates are per room per night only. There are no per-person rates, child or extra-bed supplements, meal supplements on top of room rates, promotions or early-bird discounts, allotments or release periods, taxes, or commissions.
 - No FX: a currency mismatch always becomes REQUEST_INFO.
+- Traveller flow (D12): a room change applies to the whole stay, so a mid-stay move is not modelled. "Upgrade" is assumed to mean a better room, so a hotel-initiated downgrade under a "complimentary upgrades" clause would be billed at the booked rate. Late arrival (missed first nights while the guest still arrives) is not modelled separately. Early-departure and extension dates come from the booking record and are not checked against a PMS folio.
+- A zero early-departure penalty is usually written in words ("nights stayed only"), so its value is not number-checked against the quote. The quote itself is still verified.
 - Version rule: booking-date based (D3). Not configurable per contract.
 - Season dates and room names extracted by the LLM are checked for quote presence, but not value-matched against the quote.
 - Contract inputs are my own design. They are not Flyo's schema, and nothing here integrates with Flyo.

@@ -5,8 +5,8 @@
 ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-backend-009688?logo=fastapi&logoColor=white)
 ![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs)
-![Tests](https://img.shields.io/badge/tests-63%20passing-success)
-![Eval](https://img.shields.io/badge/eval-102%20cases%20%C2%B7%20100%25%20route%20accuracy-success)
+![Tests](https://img.shields.io/badge/tests-85%20passing-success)
+![Eval](https://img.shields.io/badge/eval-133%20cases%20%C2%B7%20100%25%20route%20accuracy-success)
 
 Built as proof of work for **Flyo AI's AI Engineering Intern** role. All data is synthetic.
 
@@ -31,7 +31,7 @@ Built as proof of work for **Flyo AI's AI Engineering Intern** role. All data is
 
 ## Why TripSignal
 
-Travel companies sign hotel contracts that include seasonal rates, amendments, and cancellation clauses. Supplier invoices often drift from those terms, and every billing dispute window that passes is money lost.
+Travel companies sign hotel contracts that include seasonal rates, amendments, and clauses for cancellations, no-shows, early departures and upgrades. Supplier invoices often drift from those terms, and every billing dispute window that passes is money lost.
 
 Flyo's Contract Agent digitizes contracts. **TripSignal takes the next step and uses those contract terms to find and recover overcharges.** See [docs/PRODUCT_RESEARCH.md](docs/PRODUCT_RESEARCH.md).
 
@@ -52,7 +52,7 @@ The model never computes an amount or decides a route.
 
 **Auditing**
 - **Version-aware pricing:** picks the contract and amendments in force on the booking date, then prices night by night using `Decimal`.
-- **Cancellation fee checks** against the contract's cancellation clauses.
+- **Traveller-flow checks:** what happened to the traveller decides which nights are billable, and each case follows the clause that governs it (see below).
 - **Evidence verification:** an unverified quote can never lead to an auto-clear.
 - **Safe abstention:** if evidence is missing, conflicting, or unverified, no amount is calculated and the case is escalated.
 - **Prompt-injection defence:** contract text and booking notes are treated as untrusted data and scanned. Flagged cases cannot be auto-cleared.
@@ -63,11 +63,27 @@ The model never computes an amount or decides a route.
 |---|---|
 | `AUTO_CLEAR` | Within tolerance and all evidence verified |
 | `SUPPLIER_QUERY` | A verified overcharge |
-| `REQUEST_INFO` | A required booking field is missing |
+| `REQUEST_INFO` | A required booking field, contract rate, or governing clause (e.g. no-show terms) is missing |
 | `ESCALATE` | Injection, conflicting amendments, unknown room, currency mismatch, unverified evidence… |
 
+**Traveller flow**
+
+A booking is audited on what actually happened to the traveller, not just on what was booked:
+
+| What happened | Billable nights | Governing terms | If the clause is missing |
+|---|---|---|---|
+| Stayed as booked | every booked night | season rates on the booking date | – |
+| Cancelled | none if inside the free window, else the first *N* nights | cancellation clause | `REQUEST_INFO` |
+| **No-show** | first *N* nights, or the full stay | no-show clause (may share the cancellation sentence; an amendment can change it) | `REQUEST_INFO`. Never inferred from the cancellation terms |
+| **Early departure** | nights stayed + penalty nights, capped at the nights left unused | early-departure clause | `REQUEST_INFO` |
+| **Extension** | booked nights + extension nights | extension nights use the terms **in force when the extension was agreed**, so they can fall under a newer amendment than the original nights | `REQUEST_INFO` if the agreement date is missing |
+| **Hotel-initiated upgrade** | booked room's rate if upgrades are complimentary, else the rate of the room occupied | upgrade clause | `REQUEST_INFO` |
+| **Guest-requested upgrade** | rate of the room occupied | season rates | `REQUEST_INFO` if the reason is not recorded |
+
+These combine, for example a complimentary upgrade plus an early departure. Each night in the case view is labelled with its basis (stayed, extension, penalty), and the clauses that decided it are quoted in the supplier email and highlighted in the document viewer. Contradictory records, such as a no-show that also has a departure date, are sent back for information rather than guessed at.
+
 **Operator workflow (UI)**
-- An **exception queue** with KPIs (open overcharges, disputes due within 7 days, recorded credits), plus route tabs, filters, and search.
+- An **exception queue** with KPIs (open overcharges, disputes due within 7 days, recorded credits), plus route tabs, filters (including by traveller-flow event), and search.
 - A **case view** that shows charged vs. contracted amounts and a per-night table. Clicking a night or a finding highlights its evidence in the **source document viewer**.
 - **Four-eyes approval:** the operator proposes, and a *different* approver approves or rejects. Sending is **simulated**.
 - **Outcomes:** credit confirmed (approvers only, capped at the detected difference), supplier disputes the charge, info received, or dismissed as a false positive (a note is required).
@@ -163,7 +179,7 @@ stateDiagram-v2
 | `domain.py` | Pydantic schemas for contracts, bookings, findings, routes | – |
 | `pipeline/injection.py` | Pattern scan for instruction-like text | no |
 | `pipeline/extraction.py` | Prompt, strict schema, validation, evidence verification | **yes** |
-| `pipeline/engine.py` | Version selection, nightly pricing, cancellation fees, findings, routing | no |
+| `pipeline/engine.py` | Version selection, nightly pricing, traveller flow (cancellation, no-show, early departure, extension, upgrade), findings, routing | no |
 | `pipeline/narrative.py` | Explanation and supplier email; rejects ungrounded numbers | **yes** (optional) |
 | `pipeline/run.py` | Orchestrates the pipeline end to end | no |
 | `service.py` | Case lifecycle, action state machine, four-eyes rule, audit trail | no |
@@ -199,7 +215,7 @@ cd backend
 python -m venv .venv
 .venv\Scripts\Activate.ps1            # macOS/Linux: source .venv/bin/activate
 pip install -e ".[dev]"
-python -m app.seed --reset            # 10 contracts + 102 bookings
+python -m app.seed --reset            # 10 contracts + 133 bookings
 $env:AS_OF_DATE = "2026-10-20"        # bash: export AS_OF_DATE=2026-10-20
 uvicorn app.main:app --port 8000
 ```
@@ -235,9 +251,11 @@ Switching providers is configuration only. Business logic depends on a single `L
 
 ## Evaluation
 
-**102 synthetic cases across 15 categories:** matches, overcharges, undercharges, rounding traps, season boundaries, amendments, conflicting amendments, OCR-damaged rates, prompt injection (in contracts and in booking notes), currency mismatches, missing fields, unknown room types, missing contracts, cancellations, and multi-room bookings.
+**133 synthetic cases across 20 categories:** matches, overcharges, undercharges, rounding traps, season boundaries, amendments, conflicting amendments, OCR-damaged rates, prompt injection (in contracts and in booking notes), currency mismatches, missing fields, unknown room types, missing contracts, cancellations, multi-room bookings, and the traveller flow: no-shows, early departures, extensions, room changes, and combinations of them.
 
-**Results (2026-10-20, same dataset hash):**
+**Oracle (engine only), 2026-10-26, 133 cases:** 100% route, finding-code and amount accuracy, 0 unsafe auto-clears, 100% stay-change terms accuracy.
+
+**Groq results below are from 2026-10-20, on the earlier 102-case dataset** (before the traveller-flow cases and the `extract-v2` prompt). The Groq run has not yet been repeated on the 133-case dataset.
 
 | Metric | Oracle (engine only) | Groq `gpt-oss-120b` + narratives |
 |---|---|---|
@@ -290,7 +308,7 @@ backend/
   app/providers/   Groq / OpenAI (official SDKs), oracle, scripted test provider
   app/service.py   case lifecycle, state machine, audit trail
   evals/           dataset generator, runner, compare
-  tests/           63 tests
+  tests/           85 tests
 frontend/          Next.js 16 + Tailwind: queue, case detail, evidence viewer, approvals, evaluation
 docs/              product research, architecture, evaluation plan, decisions, limitations
 recordings/        demo video
@@ -302,8 +320,8 @@ recordings/        demo video
 
 ```bash
 cd backend
-pytest                    # 63 tests: engine rules, extraction/verification, providers (mocked SDKs),
-                          # narrative grounding, API lifecycle, eval regression
+pytest                    # 85 tests: engine rules, traveller flow, extraction/verification, providers
+                          # (mocked SDKs), narrative grounding, API lifecycle, eval regression
 ruff check . && mypy app
 cd ../frontend && npm run lint && npm run build
 ```

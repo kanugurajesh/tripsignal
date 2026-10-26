@@ -24,7 +24,7 @@ booking + invoice (structured) ────────────────�
 | `domain.py` | Pydantic schemas: contract extraction, booking, findings, routes | – |
 | `pipeline/extraction.py` | Prompt, schema, validation, evidence verification | yes |
 | `pipeline/injection.py` | Pattern scan of untrusted text for instruction-like content | no |
-| `pipeline/engine.py` | Version selection, night-by-night pricing, cancellation fees, findings, routing | no |
+| `pipeline/engine.py` | Version selection, night-by-night pricing, traveller flow (cancellation, no-show, early departure, extension, upgrade), findings, routing | no |
 | `pipeline/narrative.py` | Explanation + supplier email draft; rejects drafts citing numbers absent from facts | yes (optional) |
 | `actions.py` | Action state machine + audit trail | no |
 | `db.py`, `api.py` | SQLAlchemy (SQLite default, any SQLAlchemy URL) and FastAPI routes | – |

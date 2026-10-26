@@ -50,6 +50,27 @@ class EffectiveLLM(BaseModel):
     evidence: Evidence
 
 
+class NoShowLLM(BaseModel):
+    penalty_nights: int | None = Field(description="Nights charged per room when the guest does not arrive")
+    full_stay: bool = Field(description="True if a no-show is charged the entire booked stay")
+    evidence: Evidence
+
+
+class EarlyDepartureLLM(BaseModel):
+    penalty_nights: int = Field(
+        description="Unused nights charged per room when the guest leaves before the booked departure; "
+        "0 if only nights stayed are charged"
+    )
+    evidence: Evidence
+
+
+class UpgradeLLM(BaseModel):
+    complimentary: bool = Field(
+        description="True if upgrades made at the hotel's discretion are invoiced at the booked room's rate"
+    )
+    evidence: Evidence
+
+
 class DisputeWindowLLM(BaseModel):
     days: int
     evidence: Evidence
@@ -61,6 +82,9 @@ class ContractExtractionLLM(BaseModel):
     effective: EffectiveLLM | None
     rates: list[RateRowLLM]
     cancellation: CancellationLLM | None
+    no_show: NoShowLLM | None
+    early_departure: EarlyDepartureLLM | None
+    upgrade: UpgradeLLM | None
     dispute_window: DisputeWindowLLM | None
     unreadable_notes: list[str] = Field(description="Values you could not read or that are ambiguous")
 
@@ -91,6 +115,22 @@ class Cancellation(BaseModel):
     evidence: VerifiedEvidence
 
 
+class NoShowPolicy(BaseModel):
+    penalty_nights: int | None
+    full_stay: bool
+    evidence: VerifiedEvidence
+
+
+class EarlyDeparturePolicy(BaseModel):
+    penalty_nights: int
+    evidence: VerifiedEvidence
+
+
+class UpgradePolicy(BaseModel):
+    complimentary: bool
+    evidence: VerifiedEvidence
+
+
 class ContractTerms(BaseModel):
     """A validated, evidence-checked extraction of one contract document."""
 
@@ -101,6 +141,9 @@ class ContractTerms(BaseModel):
     effective_evidence: VerifiedEvidence | None
     rates: list[RateRow]
     cancellation: Cancellation | None
+    no_show: NoShowPolicy | None = None
+    early_departure: EarlyDeparturePolicy | None = None
+    upgrade: UpgradePolicy | None = None
     dispute_window_days: int | None
     dispute_evidence: VerifiedEvidence | None
     unreadable_notes: list[str] = []
@@ -126,12 +169,17 @@ class Booking(BaseModel):
     occupancy: str | None
     rooms: int | None = 1
     currency: str | None
-    status: Literal["CONFIRMED", "CANCELLED"] = "CONFIRMED"
+    status: Literal["CONFIRMED", "CANCELLED", "NO_SHOW"] = "CONFIRMED"
     invoice_id: str | None = None
     invoice_date: date | None = None
     invoiced_total: Decimal | None = None
     cancellation_date: date | None = None
     cancellation_fee_charged: Decimal | None = None
+    # What actually happened during the stay (None = as booked).
+    actual_check_out: date | None = Field(None, description="Earlier = early departure, later = extension")
+    extension_booked_on: date | None = Field(None, description="When the extension nights were agreed")
+    stayed_room_type: str | None = Field(None, description="Room actually occupied, if different from booked")
+    upgrade_reason: Literal["HOTEL", "GUEST_REQUEST"] | None = None
     guest_name: str = ""
     notes: str = Field("", description="Free text from the booking system; untrusted")
 
@@ -151,6 +199,7 @@ class Code(StrEnum):
     UNVERIFIED_EVIDENCE = "UNVERIFIED_EVIDENCE"
     SUSPECTED_INJECTION = "SUSPECTED_INJECTION"
     MISSING_CANCELLATION_TERMS = "MISSING_CANCELLATION_TERMS"
+    MISSING_POLICY_TERMS = "MISSING_POLICY_TERMS"
     EXTRACTION_FAILED = "EXTRACTION_FAILED"
 
 
@@ -176,6 +225,7 @@ REQUEST_INFO_CODES = {
     Code.UNREADABLE_RATE,
     Code.CURRENCY_MISMATCH,
     Code.MISSING_CANCELLATION_TERMS,
+    Code.MISSING_POLICY_TERMS,
 }
 
 
@@ -185,8 +235,14 @@ class Finding(BaseModel):
     evidence: list[VerifiedEvidence] = []
 
 
+NightBasis = Literal["stay", "extension", "early_departure_penalty", "no_show_penalty", "cancellation_penalty"]
+TravellerEvent = Literal["cancellation", "no_show", "early_departure", "extension", "hotel_upgrade", "guest_upgrade"]
+
+
 class NightCharge(BaseModel):
     night: date
+    basis: NightBasis = "stay"
+    room_type: str | None = None
     rate: Decimal
     document_id: str
     evidence: VerifiedEvidence
@@ -198,12 +254,15 @@ class AuditResult(BaseModel):
     severity: Literal["low", "medium", "high"]
     codes: list[Code]
     findings: list[Finding]
-    kind: Literal["stay", "cancellation"]
+    kind: Literal["stay", "cancellation", "no_show"]
+    traveller_events: list[TravellerEvent] = []
     currency: str | None
     expected_amount: Decimal | None = Field(None, description="Calculated from contract terms")
     charged_amount: Decimal | None = Field(None, description="From supplier invoice (as received)")
     delta: Decimal | None = Field(None, description="charged - expected; positive = overcharge")
     nights: list[NightCharge] = []
+    clauses: list[VerifiedEvidence] = Field([], description="Cancellation / no-show / early-departure / upgrade "
+                                            "clauses that determined which nights are billable")
     applied_documents: list[str] = []
     dispute_deadline: date | None = None
     assumptions: list[str] = []

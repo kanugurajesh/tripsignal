@@ -24,6 +24,7 @@ const ROWS: [string, string, "pct" | "int" | "usd" | "ms"][] = [
   ["evidence_verified_rate", "Evidence verified", "pct"],
   ["effective_date_accuracy", "Effective-date accuracy", "pct"],
   ["cancellation_terms_accuracy", "Cancellation terms accuracy", "pct"],
+  ["stay_policy_accuracy", "Stay-change terms accuracy", "pct"],
   ["narratives_rejected_unsupported_numbers", "Narratives rejected (unsupported numbers)", "int"],
   ["llm_calls", "LLM calls", "int"],
   ["est_cost_usd", "Estimated cost", "usd"],
@@ -69,7 +70,8 @@ export default function EvalsPage() {
                 <thead><tr className="border-b border-slate-100 text-left text-xs text-slate-500">
                   <th className="py-2 pr-4 font-medium">Metric</th>
                   {cols.map((r) => <th key={r.file} className="py-2 pr-4 text-right font-medium"><span className="font-mono">{r.meta.provider}:{r.meta.model}</span>{r.meta.narratives && " +narratives"}
-                    <div className="font-normal">{r.meta.cases} cases · {r.meta.run_at.slice(0, 16).replace("T", " ")}</div></th>)}
+                    <div className="font-normal">{r.meta.cases} cases · {r.meta.run_at.slice(0, 16).replace("T", " ")}</div>
+                    {r.meta.dataset_sha256 !== cols[0].meta.dataset_sha256 && <div className="font-normal text-amber-700">earlier dataset version</div>}</th>)}
                 </tr></thead>
                 <tbody>
                   {ROWS.map(([k, label, f]) => (

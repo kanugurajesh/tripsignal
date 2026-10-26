@@ -24,14 +24,17 @@ from app.domain import (
     ContractDocument,
     ContractExtractionLLM,
     ContractTerms,
+    EarlyDeparturePolicy,
     Evidence,
+    NoShowPolicy,
     RateRow,
+    UpgradePolicy,
     VerifiedEvidence,
 )
 from app.providers.base import LLMProvider, ProviderError, strict_schema
 
 SCHEMA = strict_schema(ContractExtractionLLM)
-PROMPT_VERSION = "extract-v1"
+PROMPT_VERSION = "extract-v2"
 
 SYSTEM_PROMPT = """You extract hotel supplier contract terms into JSON for an audit system.
 
@@ -51,6 +54,13 @@ Rules:
 - effective: the date from which this document's terms apply to new bookings. If the
   document is an amendment, set is_amendment=true and include only rates it states.
 - cancellation and dispute_window: null if not stated.
+- no_show: what a guest who never arrives is charged. If one sentence covers both late
+  cancellations and no-shows, use it (and its quote) for both. full_stay=true only if the
+  whole booked stay is charged. null if no-shows are not mentioned.
+- early_departure: unused nights charged when a guest leaves before the booked departure
+  date (0 if only nights stayed are charged). null if not stated.
+- upgrade: whether upgrades made at the hotel's discretion are complimentary (invoiced at
+  the booked room's rate) or billed at the room occupied. null if not stated.
 """
 
 
@@ -137,6 +147,20 @@ def to_terms(doc: ContractDocument, x: ContractExtractionLLM) -> ContractTerms:
         ints = [v for v in (c.free_cancellation_days, c.penalty_nights) if v is not None]
         canc = Cancellation(free_cancellation_days=c.free_cancellation_days, penalty_nights=c.penalty_nights,
                             evidence=verify(doc, c.evidence, must_contain=ints))
+    ns = ed = up = None
+    if x.no_show:
+        n = x.no_show
+        ns = NoShowPolicy(penalty_nights=n.penalty_nights, full_stay=n.full_stay,
+                          evidence=verify(doc, n.evidence, must_contain=[n.penalty_nights] if n.penalty_nights else None))
+    if x.early_departure:
+        dep = x.early_departure
+        if dep.penalty_nights < 0:
+            errors.append("early_departure: negative penalty_nights")
+        else:  # a zero penalty is usually written in words ("nights stayed only"), so only check non-zero values
+            ed = EarlyDeparturePolicy(penalty_nights=dep.penalty_nights, evidence=verify(
+                doc, dep.evidence, must_contain=[dep.penalty_nights] if dep.penalty_nights else None))
+    if x.upgrade:
+        up = UpgradePolicy(complimentary=x.upgrade.complimentary, evidence=verify(doc, x.upgrade.evidence))
     disp_days, disp_ev = None, None
     if x.dispute_window:
         disp_ev = verify(doc, x.dispute_window.evidence, must_contain=[x.dispute_window.days])
@@ -144,7 +168,7 @@ def to_terms(doc: ContractDocument, x: ContractExtractionLLM) -> ContractTerms:
     return ContractTerms(
         document_id=doc.document_id, hotel_name=x.hotel_name, is_amendment=x.is_amendment,
         effective_from=eff_from, effective_evidence=eff_ev, rates=rates, cancellation=canc,
-        dispute_window_days=disp_days, dispute_evidence=disp_ev,
+        no_show=ns, early_departure=ed, upgrade=up, dispute_window_days=disp_days, dispute_evidence=disp_ev,
         unreadable_notes=x.unreadable_notes, schema_errors=errors,
     )
 

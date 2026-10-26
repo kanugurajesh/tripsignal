@@ -40,18 +40,34 @@ NEXT_STEP = {
 }
 
 
+BASIS_LABEL = {
+    "extension": " (extension)", "early_departure_penalty": " (early-departure penalty)",
+    "no_show_penalty": " (no-show penalty)", "cancellation_penalty": " (cancellation penalty)",
+}
+EVENT_LABEL = {
+    "early_departure": "The guest left before the booked check-out date.",
+    "extension": "The guest extended the stay beyond the booked check-out date.",
+    "hotel_upgrade": "The hotel moved the guest to a different room category.",
+    "guest_upgrade": "The guest asked to move to a different room category.",
+    "no_show": "The guest did not arrive.",
+}
+
+
 def facts(result: AuditResult, booking: Booking) -> dict[str, Any]:
     return {
         "booking_id": booking.booking_id, "invoice_id": booking.invoice_id, "hotel_id": booking.hotel_id,
         "stay": f"{booking.check_in} to {booking.check_out}", "room": booking.room_type,
         "meal_plan": booking.meal_plan, "occupancy": booking.occupancy, "rooms": booking.rooms,
-        "kind": result.kind, "route": result.route.value, "codes": [c.value for c in result.codes],
+        "kind": result.kind, "traveller_events": result.traveller_events,
+        "actual_check_out": str(booking.actual_check_out) if booking.actual_check_out else None,
+        "stayed_room_type": booking.stayed_room_type, "route": result.route.value, "codes": [c.value for c in result.codes],
         "currency": result.currency,
         "expected_amount": str(result.expected_amount) if result.expected_amount is not None else None,
         "charged_amount": str(result.charged_amount) if result.charged_amount is not None else None,
         "difference": str(result.delta) if result.delta is not None else None,
-        "nightly_rates": [{"night": str(n.night), "rate": str(n.rate), "document": n.document_id,
+        "nightly_rates": [{"night": str(n.night), "basis": n.basis, "room": n.room_type, "rate": str(n.rate), "document": n.document_id,
                            "quote": n.evidence.quote} for n in result.nights],
+        "contract_terms_applied": [c.quote for c in result.clauses],
         "findings": [f.message for f in result.findings],
         "dispute_deadline": str(result.dispute_deadline) if result.dispute_deadline else None,
     }
@@ -64,12 +80,17 @@ def template(result: AuditResult, booking: Booking) -> Narrative:
     subject = body = None
     if result.route == Route.SUPPLIER_QUERY and result.delta is not None:
         subject = f"Rate query: invoice {booking.invoice_id or '(no invoice id)'} / booking {booking.booking_id}"
-        lines = "\n".join(f"  {n.night}: {n.rate} {cur} (contract {n.document_id}: \"{n.evidence.quote.strip()}\")"
-                          for n in result.nights)
-        what = "cancellation fee" if result.kind == "cancellation" else "invoice"
+        lines = "\n".join(f"  {n.night}{BASIS_LABEL.get(n.basis, '')}: {n.rate} {cur} "
+                          f"(contract {n.document_id}: \"{n.evidence.quote.strip()}\")" for n in result.nights)
+        what = {"cancellation": "cancellation fee", "no_show": "no-show charge"}.get(result.kind, "invoice")
+        changes = "".join(f"\n{EVENT_LABEL[e]}" for e in result.traveller_events if e in EVENT_LABEL)
+        terms = "".join(f"  {c.document_id} ({c.section}): \"{c.quote.strip()}\"\n" for c in result.clauses)
+        if terms:
+            lines = f"{lines}\n\nContract terms applied:\n{terms.rstrip()}"
         body = (
             f"Dear Reservations Team,\n\nWe have reviewed the {what} for booking {booking.booking_id} "
-            f"({booking.room_type}, {booking.meal_plan}, {booking.occupancy}, {booking.check_in} to {booking.check_out}).\n\n"
+            f"({booking.room_type}, {booking.meal_plan}, {booking.occupancy}, {booking.check_in} to {booking.check_out})."
+            f"{changes}\n\n"
             f"Charged: {result.charged_amount} {cur}\nContracted: {result.expected_amount} {cur}\n"
             f"Difference: {result.delta} {cur}\n\nContracted nightly rates applied:\n{lines or '  (no nights chargeable)'}\n\n"
             "Please confirm the correction and issue a credit note for the difference, or tell us which "

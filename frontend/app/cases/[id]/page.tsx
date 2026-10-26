@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { Suspense, useCallback, useEffect, useState } from "react";
-import { api, money, type CaseDetail, type Evidence } from "@/lib/api";
+import { api, BASIS_LABEL, money, type CaseDetail, type Evidence } from "@/lib/api";
 import { useActor } from "@/lib/actor";
-import { Card, Code, ErrorBox, RouteBadge, Severity, Skeleton, StatusPill, Verified } from "@/components/ui";
+import { Card, Code, ErrorBox, EventTag, RouteBadge, Severity, Skeleton, StatusPill, Verified } from "@/components/ui";
 import DocumentViewer from "@/components/DocumentViewer";
 import ActionPanel from "@/components/ActionPanel";
 
@@ -34,7 +34,8 @@ function CaseView() {
 
   const r = c.result;
   const cur = r.currency;
-  const allEvidence: Evidence[] = [...r.nights.map((n) => n.evidence), ...r.findings.flatMap((f) => f.evidence)];
+  const clauses = r.clauses ?? [];
+  const allEvidence: Evidence[] = [...r.nights.map((n) => n.evidence), ...clauses, ...r.findings.flatMap((f) => f.evidence)];
   const n = c.narrative?.narrative;
 
   return (
@@ -79,7 +80,8 @@ function CaseView() {
             ) : <p className="text-sm text-slate-500">No narrative generated.</p>}
           </Card>
 
-          <Card title={r.kind === "cancellation" ? "Cancellation fee check" : "Rate check"}>
+          <Card title={r.kind === "cancellation" ? "Cancellation fee check" : r.kind === "no_show" ? "No-show charge check" : "Rate check"}
+            right={(r.traveller_events ?? []).length > 0 && <span className="flex flex-wrap gap-1">{r.traveller_events.map((e) => <EventTag key={e} event={e} />)}</span>}>
             <div className="grid grid-cols-3 gap-3 text-sm">
               <Amount label="Charged (supplier invoice)" value={money(r.charged_amount, cur)} />
               <Amount label="Contracted (calculated)" value={money(r.expected_amount, cur)} />
@@ -89,17 +91,30 @@ function CaseView() {
             {r.expected_amount === null && (
               <p className="mt-3 text-xs text-slate-600">No contracted amount was calculated. The evidence needed to price this booking safely is missing, conflicting, or unverified, so the system abstained.</p>
             )}
+            {clauses.length > 0 && (
+              <div className="mt-3 text-xs">
+                <div className="text-slate-500">Contract terms applied</div>
+                {clauses.map((e, i) => (
+                  <button key={i} onClick={() => setFocus(e)} className="mt-1 block text-left text-slate-700 hover:text-slate-900">
+                    <span className="font-mono text-slate-500">{e.document_id} · {e.section}</span> “{e.quote.replace(/\|/g, " ").trim()}” <Verified ok={e.verified} reason={e.reason} />
+                  </button>
+                ))}
+              </div>
+            )}
             {r.nights.length > 0 && (
               <div className="mt-4 overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead className="text-left text-slate-500"><tr className="border-b border-slate-100">
-                    <th className="py-1.5 pr-2 font-medium">Night</th><th className="py-1.5 pr-2 text-right font-medium">Rate</th>
+                    <th className="py-1.5 pr-2 font-medium">Night</th><th className="py-1.5 pr-2 font-medium">Basis</th>
+                    <th className="py-1.5 pr-2 text-right font-medium">Rate</th>
                     <th className="py-1.5 pr-2 font-medium">Source</th><th className="py-1.5 font-medium">Evidence</th></tr></thead>
                   <tbody>
                     {r.nights.map((x) => (
-                      <tr key={x.night} className="cursor-pointer border-b border-slate-50 align-top hover:bg-amber-50/50"
+                      <tr key={`${x.night}-${x.basis}`} className="cursor-pointer border-b border-slate-50 align-top hover:bg-amber-50/50"
                         onClick={() => setFocus(x.evidence)}>
                         <td className="py-1.5 pr-2 font-mono">{x.night}</td>
+                        <td className="py-1.5 pr-2 text-slate-600">{BASIS_LABEL[x.basis] ?? "Stayed"}
+                          {x.room_type && x.room_type !== c.booking.room_type && <div className="text-slate-500">{x.room_type}</div>}</td>
                         <td className="py-1.5 pr-2 text-right font-mono">{money(x.rate)}</td>
                         <td className="py-1.5 pr-2 font-mono text-slate-600">{x.document_id}</td>
                         <td className="py-1.5"><span className="text-slate-700">“{x.evidence.quote.replace(/\|/g, " ").trim()}”</span> <Verified ok={x.evidence.verified} reason={x.evidence.reason} /></td>
@@ -140,7 +155,8 @@ function CaseView() {
 
           <Card title="Booking record">
             <dl className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-xs sm:grid-cols-3">
-              {Object.entries(c.booking).filter(([k]) => k !== "notes" && !(c.booking.status === "CANCELLED" ? k === "invoiced_total" : k.startsWith("cancellation"))).map(([k, v]) => (
+              {Object.entries(c.booking).filter(([k, v]) => k !== "notes" && !(OPTIONAL_FIELDS.includes(k) && v === null)
+                && !(c.booking.status === "CANCELLED" ? k === "invoiced_total" : k.startsWith("cancellation"))).map(([k, v]) => (
                 <div key={k}><dt className="text-slate-500">{k.replace(/_/g, " ")}</dt>
                   <dd className={`font-mono ${v === null ? "text-rose-700" : "text-slate-800"}`}>{v === null ? "missing" : String(v)}</dd></div>
               ))}
@@ -176,6 +192,9 @@ function CaseView() {
     </div>
   );
 }
+
+// Shown only when set: null here means the stay went as booked, not that data is missing.
+const OPTIONAL_FIELDS = ["actual_check_out", "extension_booked_on", "stayed_room_type", "upgrade_reason"];
 
 function Amount({ label, value, tone }: { label: string; value: string; tone?: "bad" }) {
   return (

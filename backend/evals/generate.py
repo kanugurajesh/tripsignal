@@ -56,6 +56,11 @@ class Doc:
     effective: date
     rates: list[Rate]
     cancellation: tuple[int, int] | None = None
+    # no-show: nights charged, "full" for the whole stay, "cancellation" = covered by the
+    # cancellation sentence (same penalty), None = not mentioned
+    no_show: int | str | None = "cancellation"
+    early_departure: int | None = None  # unused nights charged; 0 = nights stayed only
+    upgrade_complimentary: bool | None = None
     dispute_days: int | None = None
     injection: str | None = None
     base_ref: str | None = None
@@ -120,13 +125,41 @@ def render(h: Hotel, d: Doc) -> tuple[str, dict]:
     lines.append("")
     gold_canc = gold_disp = None
     n = 4 if d.kind == "base" else 3
+    gold_ns = gold_ed = gold_up = None
     if d.cancellation:
         free, pen = d.cancellation
         sec = f"{n}. CANCELLATION"
-        cl = (f"Cancellations received {free} days or more before arrival are free of charge; later cancellations "
-              f"and no-shows are charged {pen} night{'s' if pen > 1 else ''} per room.")
+        who = "later cancellations and no-shows are" if d.no_show == "cancellation" else "later cancellations are"
+        cl = (f"Cancellations received {free} days or more before arrival are free of charge; {who} "
+              f"charged {pen} night{'s' if pen > 1 else ''} per room.")
         lines += [sec, cl, ""]
         gold_canc = {"free_cancellation_days": free, "penalty_nights": pen, "evidence": {"section": sec, "quote": cl}}
+        if d.no_show == "cancellation":
+            gold_ns = {"penalty_nights": pen, "full_stay": False, "evidence": {"section": sec, "quote": cl}}
+        n += 1
+    policy: list[str] = []
+    sec = f"{n}. STAY CHANGES"
+    if d.no_show not in (None, "cancellation"):
+        ln = ("No-shows are charged the full booked stay." if d.no_show == "full"
+              else f"No-shows are charged {d.no_show} night{'s' if d.no_show != 1 else ''} per room.")
+        policy.append(ln)
+        gold_ns = {"penalty_nights": None if d.no_show == "full" else d.no_show, "full_stay": d.no_show == "full",
+                   "evidence": {"section": sec, "quote": ln}}
+    if d.early_departure is not None:
+        k = d.early_departure
+        ln = ("Guests departing before the booked departure date are charged for nights stayed only." if k == 0 else
+              f"Guests departing before the booked departure date are charged for nights stayed plus {k} "
+              f"unused night{'s' if k > 1 else ''} per room.")
+        policy.append(ln)
+        gold_ed = {"penalty_nights": k, "evidence": {"section": sec, "quote": ln}}
+    if d.upgrade_complimentary is not None:
+        ln = ("Room upgrades made at the Hotel's discretion are complimentary; the booked room category is invoiced."
+              if d.upgrade_complimentary else
+              "Room upgrades made at the Hotel's discretion are invoiced at the contracted rate of the room occupied.")
+        policy.append(ln)
+        gold_up = {"complimentary": d.upgrade_complimentary, "evidence": {"section": sec, "quote": ln}}
+    if policy:
+        lines += [sec, *policy, ""]
         n += 1
     if d.dispute_days:
         sec = f"{n}. BILLING"
@@ -141,7 +174,8 @@ def render(h: Hotel, d: Doc) -> tuple[str, dict]:
         "hotel_name": h.name, "is_amendment": d.kind == "amend",
         "effective": {"effective_from": d.effective.isoformat(),
                       "evidence": {"section": lines[lines.index(eff_line) - 1], "quote": eff_line}},
-        "rates": gold_rates, "cancellation": gold_canc, "dispute_window": gold_disp,
+        "rates": gold_rates, "cancellation": gold_canc, "no_show": gold_ns, "early_departure": gold_ed,
+        "upgrade": gold_up, "dispute_window": gold_disp,
         "unreadable_notes": [f"{r.room} {r.meal} {r.occ} rate illegible: '{r.garbled}'" for r in d.rates if r.rate is None],
     }
     return "\n".join(lines), gold
@@ -170,35 +204,36 @@ def build_hotels() -> dict[str, Hotel]:
         ("Deluxe", "BB", "DBL"): ["145.00", "195.00", "130.00"],
         ("Deluxe", "HB", "DBL"): ["185.00", "240.00", "170.00"],
         ("Superior", "BB", "SGL"): ["100.00", "140.00", "95.00"],
-    }), cancellation=(14, 1), dispute_days=30)]
+    }), cancellation=(14, 1), early_departure=1, upgrade_complimentary=True, dispute_days=30)]
 
     h = add(Hotel("HTL-DXB-02", "Al Noor Creek Resort", "Dubai", "USD", "prose"))
     h.docs = [Doc("ANC-DXB-2026-v1", "base", D("2026-02-01"), season_rates({
         ("Premier Sea View", "BB", "DBL"): ["310.00", "240.00", "355.00"],
         ("Classic", "RO", "DBL"): ["180.00", "140.00", "210.00"],
         ("Classic", "HB", "SGL"): ["205.00", "165.00", "235.00"],
-    }), cancellation=(7, 2), dispute_days=45),
+    }), cancellation=(7, 2), no_show="full", early_departure=0, upgrade_complimentary=True, dispute_days=45),
+        # amendment also softens the no-show penalty for bookings made from 1 June
         Doc("ANC-DXB-2026-A1", "amend", D("2026-06-01"), [
             Rate("Premier Sea View", "BB", "DBL", S2[0], S2[1], Decimal("225.00")),
             Rate("Premier Sea View", "BB", "DBL", S3[0], S3[1], Decimal("340.00")),
-        ], base_ref="ANC-DXB-2026-v1", title_suffix="No. 1")]
+        ], no_show=2, base_ref="ANC-DXB-2026-v1", title_suffix="No. 1")]
 
     h = add(Hotel("HTL-GOA-03", "Saligao Palms Retreat", "Goa", "INR", "bullets"))
     h.docs = [Doc("SPR-GOA-2026-v1", "base", D("2026-01-10"), season_rates({
         ("Garden Cottage", "BB", "DBL"): ["6500.00", "5200.00", "9800.00"],
         ("Pool Villa", "HB", "DBL"): ["14500.00", "11800.00", "21500.00"],
-    }), cancellation=(21, 1), dispute_days=30)]
+    }), cancellation=(21, 1), early_departure=2, dispute_days=30)]
 
     h = add(Hotel("HTL-BKK-04", "Riverside Orchid Bangkok", "Bangkok", "USD", "table"))
     h.docs = [Doc("ROB-BKK-2026-v1", "base", D("2026-01-20"), season_rates({
         ("Deluxe River", "BB", "DBL"): ["135.00", "120.00", "165.00"],
         ("Executive Suite", "BB", "DBL"): ["260.00", "230.00", "310.00"],
-    }), cancellation=(3, 1), dispute_days=60),
+    }), cancellation=(3, 1), upgrade_complimentary=False, dispute_days=60),
         # two amendments with the SAME effective date and different rates: must not be resolved silently
         Doc("ROB-BKK-2026-A1", "amend", D("2026-07-01"), [Rate("Deluxe River", "BB", "DBL", S3[0], S3[1], Decimal("155.00"))],
-            base_ref="ROB-BKK-2026-v1", title_suffix="No. 1"),
+            no_show=None, base_ref="ROB-BKK-2026-v1", title_suffix="No. 1"),
         Doc("ROB-BKK-2026-A1R", "amend", D("2026-07-01"), [Rate("Deluxe River", "BB", "DBL", S3[0], S3[1], Decimal("149.00"))],
-            base_ref="ROB-BKK-2026-v1", title_suffix="No. 1 (sales copy)")]
+            no_show=None, base_ref="ROB-BKK-2026-v1", title_suffix="No. 1 (sales copy)")]
 
     h = add(Hotel("HTL-PRG-05", "Hotel Vltava Gardens", "Prague", "EUR", "prose"))
     h.docs = [Doc("HVG-PRG-2026-v1", "base", D("2026-01-05"), [
@@ -220,7 +255,7 @@ def build_hotels() -> dict[str, Hotel]:
     h.docs = [Doc("HC-KTM-2026-v1", "base", D("2026-03-01"), season_rates({
         ("Heritage Room", "BB", "DBL"): ["88.00", "72.00", "96.00"],
         ("Heritage Room", "HB", "TPL"): ["139.00", "118.00", "149.00"],
-    }), cancellation=(30, 2), dispute_days=None)]
+    }), cancellation=(30, 2), no_show=None, early_departure=1, upgrade_complimentary=True, dispute_days=None)]
     return H
 
 
@@ -249,6 +284,19 @@ def first_nights_total(h: Hotel, bd: date, room: str, meal: str, occ: str, ci: d
     return contracted_total(h, bd, room, meal, occ, ci, ci + timedelta(days=k), rooms)
 
 
+def stay_policy(h: Hotel, bd: date, attr: str) -> int | str | bool | None:
+    """Clause value from the newest document in force at bd that states it."""
+    for d in sorted((d for d in h.docs if d.effective <= bd), key=lambda d: d.effective, reverse=True):
+        if attr == "no_show":
+            if d.no_show == "cancellation" and d.cancellation:
+                return d.cancellation[1]
+            if d.no_show not in (None, "cancellation"):
+                return d.no_show
+        elif (v := getattr(d, attr)) is not None:
+            return v
+    return None
+
+
 # ------------------------------------------------------------ cases
 class Builder:
     def __init__(self, hotels: dict[str, Hotel], rng: random.Random):
@@ -259,7 +307,8 @@ class Builder:
         h = self.H[booking["hotel_id"]]
         b = {"booking_id": f"BK-{26000 + self.n}", "invoice_id": f"INV-{88000 + self.n}", "rooms": 1,
              "status": "CONFIRMED", "guest_name": f"Guest {self.n:03d}", "notes": "", **booking}
-        for k in ("booking_date", "check_in", "check_out", "invoice_date", "cancellation_date"):
+        for k in ("booking_date", "check_in", "check_out", "invoice_date", "cancellation_date", "actual_check_out",
+                  "extension_booked_on"):
             if isinstance(b.get(k), date):
                 b[k] = b[k].isoformat()
         for k in ("invoiced_total", "cancellation_fee_charged"):
@@ -287,6 +336,47 @@ class Builder:
                                       meal_plan=meal, occupancy=occ, rooms=rooms, currency=h.currency,
                                       invoice_date=co, invoiced_total=invoiced, notes=notes),
                  dict(route=route, codes=codes, expected_amount=exp_total, delta=d))
+
+    def traveller(self, category: str, desc: str, hid: str, room: str, meal: str, occ: str, bd: date, ci: date,
+                  nights: int, *, no_show: bool = False, stayed: int | None = None, extend: int = 0,
+                  ext_on: date | None = None, moved_to: str | None = None, reason: str | None = None,
+                  rooms: int = 1, delta: Decimal = Decimal("0"), invoiced_override: Decimal | None = None) -> None:
+        """A booking whose traveller did not simply stay as booked. Expected amount from the clause spec."""
+        h = self.H[hid]
+        co = ci + timedelta(days=nights)
+        if no_show:
+            ns = stay_policy(h, bd, "no_show")
+            assert ns is not None, (hid, bd)
+            k = nights if ns == "full" else min(int(ns), nights)
+            exp_total = first_nights_total(h, bd, room, meal, occ, ci, k, rooms)
+        else:
+            billed = room
+            if moved_to and (reason == "GUEST_REQUEST" or stay_policy(h, bd, "upgrade_complimentary") is False):
+                billed = moved_to
+            billable = nights if stayed is None else stayed
+            if billable < nights:
+                billable += min(int(stay_policy(h, bd, "early_departure")), nights - billable)  # type: ignore[arg-type]
+            exp_total = first_nights_total(h, bd, billed, meal, occ, ci, billable, rooms)
+            if extend:
+                assert ext_on
+                exp_total += first_nights_total(h, ext_on, billed, meal, occ, co, extend, rooms)
+        invoiced = invoiced_override if invoiced_override is not None else exp_total + delta
+        d = invoiced - exp_total
+        code = "MATCH" if abs(d) <= 1 else "OVERCHARGE" if d > 0 else "UNDERCHARGE"
+        route = {"MATCH": "AUTO_CLEAR", "OVERCHARGE": "SUPPLIER_QUERY", "UNDERCHARGE": "ESCALATE"}[code]
+        departure = ci + timedelta(days=(nights if stayed is None else stayed) + extend)
+        booking = dict(hotel_id=hid, booking_date=bd, check_in=ci, check_out=co, room_type=room, meal_plan=meal,
+                       occupancy=occ, rooms=rooms, currency=h.currency, invoiced_total=invoiced,
+                       invoice_date=ci if no_show else departure)
+        if no_show:
+            booking["status"] = "NO_SHOW"
+        elif departure != co:
+            booking["actual_check_out"] = departure
+        if ext_on:
+            booking["extension_booked_on"] = ext_on
+        if moved_to:
+            booking.update(stayed_room_type=moved_to, upgrade_reason=reason)
+        self.add(category, desc, booking, dict(route=route, codes=[code], expected_amount=exp_total, delta=d))
 
     def blocked(self, category: str, desc: str, booking: dict, route: str, codes: list[str],
                 docs: list[str] | None = None) -> None:
@@ -488,6 +578,101 @@ def build_cases(H: dict[str, Hotel], rng: random.Random) -> list[dict]:
            D("2026-08-01"), D("2026-10-20"), 2, rooms=3)
     B.stay("multi_room", "2 rooms, invoice includes an extra room-night", "HTL-BKK-04", "Executive Suite", "BB", "DBL",
            D("2026-03-01"), D("2026-04-20"), 3, rooms=2, delta=Decimal("260.00"))
+
+    # 16. no-shows: each contract states its own no-show clause (or none)
+    t = B.traveller
+    t("no_show", "No-show, 1-night penalty correctly charged", "HTL-LIS-01", "Deluxe", "BB", "DBL",
+      D("2026-03-01"), D("2026-05-10"), 3, no_show=True)
+    t("no_show", "No-show, supplier charged the full stay (contract: 1 night)", "HTL-LIS-01", "Superior", "BB", "DBL",
+      D("2026-03-01"), D("2026-05-10"), 3, no_show=True, invoiced_override=Decimal("360.00"))
+    t("no_show", "No-show booked before amendment; full-stay penalty applies", "HTL-DXB-02", "Classic", "RO", "DBL",
+      D("2026-04-01"), D("2026-08-10"), 3, no_show=True)
+    t("no_show", "No-show booked after amendment (2 nights) but billed full stay", "HTL-DXB-02", "Classic", "RO",
+      "DBL", D("2026-06-05"), D("2026-08-10"), 4, no_show=True, invoiced_override=Decimal("560.00"))
+    t("no_show", "No-show booked after amendment; 2-night penalty crosses season, correct", "HTL-DXB-02",
+      "Premier Sea View", "BB", "DBL", D("2026-06-05"), D("2026-09-30"), 3, no_show=True)
+    t("no_show", "No-show, 2 rooms, penalty correct", "HTL-GOA-03", "Garden Cottage", "BB", "DBL",
+      D("2026-07-01"), D("2026-11-02"), 4, no_show=True, rooms=2)
+    B.blocked("no_show", "No-show at a hotel whose contract has no no-show clause",
+              dict(hotel_id="HTL-KTM-07", booking_date=D("2026-04-01"), check_in=D("2026-05-12"), nights=3,
+                   room_type="Heritage Room", meal_plan="BB", occupancy="DBL", status="NO_SHOW",
+                   invoiced_total=Decimal("264.00")), "REQUEST_INFO", ["MISSING_POLICY_TERMS"])
+    B.blocked("no_show", "No-show record that also has a departure date (contradictory)",
+              dict(hotel_id="HTL-LIS-01", booking_date=D("2026-03-01"), check_in=D("2026-05-10"), nights=3,
+                   room_type="Deluxe", meal_plan="BB", occupancy="DBL", status="NO_SHOW",
+                   actual_check_out=D("2026-05-12"), invoiced_total=Decimal("145.00")),
+              "REQUEST_INFO", ["MISSING_BOOKING_FIELD"])
+    # 17. early departures
+    t("early_departure", "Left after 3 of 5 nights; stayed nights + 1 penalty night billed", "HTL-LIS-01",
+      "Superior", "BB", "DBL", D("2026-03-01"), D("2026-05-10"), 5, stayed=3)
+    t("early_departure", "Left after 3 of 5 nights; supplier billed all 5", "HTL-LIS-01", "Deluxe", "HB", "DBL",
+      D("2026-03-01"), D("2026-05-10"), 5, stayed=3, invoiced_override=Decimal("925.00"))
+    t("early_departure", "Left early; contract charges nights stayed only", "HTL-DXB-02", "Classic", "HB", "SGL",
+      D("2026-03-01"), D("2026-05-20"), 4, stayed=2)
+    t("early_departure", "Left early; supplier added a penalty night the contract does not allow", "HTL-DXB-02",
+      "Classic", "RO", "DBL", D("2026-03-01"), D("2026-05-20"), 4, stayed=2, delta=Decimal("180.00"))
+    t("early_departure", "2-night penalty capped at the 1 unused night", "HTL-GOA-03", "Pool Villa", "HB", "DBL",
+      D("2026-07-01"), D("2026-10-10"), 3, stayed=2)
+    t("early_departure", "Penalty night falls in the next season", "HTL-KTM-07", "Heritage Room", "BB", "DBL",
+      D("2026-04-01"), D("2026-06-28"), 5, stayed=3)
+    B.blocked("early_departure", "Early departure at a hotel with no early-departure clause",
+              dict(hotel_id="HTL-BKK-04", booking_date=D("2026-03-01"), check_in=D("2026-04-20"), nights=4,
+                   room_type="Executive Suite", meal_plan="BB", occupancy="DBL", actual_check_out=D("2026-04-22"),
+                   invoiced_total=Decimal("1040.00")), "REQUEST_INFO", ["MISSING_POLICY_TERMS"])
+    # 18. extensions: extra nights are priced at the terms in force when they were agreed
+    t("extension", "Stay extended by 2 nights, same terms, correct", "HTL-LIS-01", "Superior", "BB", "DBL",
+      D("2026-03-01"), D("2026-05-10"), 3, extend=2, ext_on=D("2026-05-11"))
+    t("extension", "Extension agreed after amendment; correctly billed at amended rate", "HTL-DXB-02",
+      "Premier Sea View", "BB", "DBL", D("2026-05-20"), D("2026-08-10"), 3, extend=2, ext_on=D("2026-08-12"))
+    t("extension", "Extension agreed after amendment; supplier billed old rate for extension nights", "HTL-DXB-02",
+      "Premier Sea View", "BB", "DBL", D("2026-05-20"), D("2026-08-10"), 3, extend=2, ext_on=D("2026-08-12"),
+      invoiced_override=Decimal("240.00") * 5)
+    B.blocked("extension", "Extension with no record of when it was agreed",
+              dict(hotel_id="HTL-LIS-01", booking_date=D("2026-03-01"), check_in=D("2026-05-10"), nights=3,
+                   room_type="Superior", meal_plan="BB", occupancy="DBL", actual_check_out=D("2026-05-15"),
+                   invoiced_total=Decimal("600.00")), "REQUEST_INFO", ["MISSING_BOOKING_FIELD"])
+    B.blocked("extension", "Extension runs past the last contracted season",
+              dict(hotel_id="HTL-LIS-01", booking_date=D("2026-03-01"), check_in=D("2027-03-29"), nights=3,
+                   room_type="Superior", meal_plan="BB", occupancy="DBL", actual_check_out=D("2027-04-03"),
+                   extension_booked_on=D("2027-03-31"), invoiced_total=Decimal("550.00")),
+              "REQUEST_INFO", ["RATE_NOT_FOUND"])
+    B.blocked("extension", "Extension nights fall under the conflicting same-date amendments",
+              dict(hotel_id="HTL-BKK-04", booking_date=D("2026-06-01"), check_in=D("2026-10-10"), nights=2,
+                   room_type="Deluxe River", meal_plan="BB", occupancy="DBL", actual_check_out=D("2026-10-14"),
+                   extension_booked_on=D("2026-10-11"), invoiced_total=Decimal("660.00")),
+              "ESCALATE", ["VERSION_CONFLICT"])
+    # 19. room changes
+    t("room_change", "Hotel upgrade is complimentary; booked room invoiced", "HTL-LIS-01", "Superior", "BB", "DBL",
+      D("2026-03-01"), D("2026-05-10"), 3, moved_to="Deluxe", reason="HOTEL")
+    t("room_change", "Hotel upgrade is complimentary but upgraded rate invoiced", "HTL-LIS-01", "Superior", "BB",
+      "DBL", D("2026-03-01"), D("2026-05-10"), 3, moved_to="Deluxe", reason="HOTEL",
+      invoiced_override=Decimal("435.00"))
+    t("room_change", "Guest-requested upgrade billed at the upgraded room rate", "HTL-LIS-01", "Superior", "BB",
+      "DBL", D("2026-03-01"), D("2026-07-10"), 2, moved_to="Deluxe", reason="GUEST_REQUEST")
+    t("room_change", "Contract bills hotel upgrades at the room occupied", "HTL-BKK-04", "Deluxe River", "BB", "DBL",
+      D("2026-03-01"), D("2026-04-20"), 3, moved_to="Executive Suite", reason="HOTEL")
+    B.blocked("room_change", "Hotel upgrade but the contract is silent on upgrades",
+              dict(hotel_id="HTL-GOA-03", booking_date=D("2026-07-01"), check_in=D("2026-10-10"), nights=2,
+                   room_type="Garden Cottage", meal_plan="BB", occupancy="DBL", stayed_room_type="Pool Villa",
+                   upgrade_reason="HOTEL", invoiced_total=Decimal("19600.00")), "REQUEST_INFO", ["MISSING_POLICY_TERMS"])
+    B.blocked("room_change", "Room changed with no recorded reason",
+              dict(hotel_id="HTL-LIS-01", booking_date=D("2026-03-01"), check_in=D("2026-05-10"), nights=3,
+                   room_type="Superior", meal_plan="BB", occupancy="DBL", stayed_room_type="Deluxe",
+                   invoiced_total=Decimal("435.00")), "REQUEST_INFO", ["MISSING_BOOKING_FIELD"])
+    B.blocked("room_change", "Guest moved to a room category the contract does not price",
+              dict(hotel_id="HTL-LIS-01", booking_date=D("2026-03-01"), check_in=D("2026-05-10"), nights=2,
+                   room_type="Superior", meal_plan="BB", occupancy="DBL", stayed_room_type="Family Suite",
+                   upgrade_reason="GUEST_REQUEST", invoiced_total=Decimal("400.00")), "REQUEST_INFO", ["RATE_NOT_FOUND"])
+    # 20. combined traveller events
+    t("combined", "Complimentary upgrade + early departure; billed full stay at upgraded rate", "HTL-LIS-01",
+      "Superior", "BB", "DBL", D("2026-03-01"), D("2026-07-05"), 5, stayed=2, moved_to="Deluxe", reason="HOTEL",
+      invoiced_override=Decimal("195.00") * 5)
+    t("combined", "Guest upgrade + extension across a season change, correct", "HTL-LIS-01", "Superior", "BB", "DBL",
+      D("2026-03-01"), D("2026-06-27"), 3, extend=2, ext_on=D("2026-06-28"), moved_to="Deluxe",
+      reason="GUEST_REQUEST")
+    t("combined", "Complimentary upgrade + extension at a hotel with an amendment", "HTL-DXB-02", "Classic", "RO",
+      "DBL", D("2026-03-01"), D("2026-08-10"), 2, extend=1, ext_on=D("2026-08-11"), moved_to="Premier Sea View",
+      reason="HOTEL", delta=Decimal("100.00"))
     return B.cases
 
 

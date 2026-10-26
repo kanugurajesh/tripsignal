@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { api, money, ROUTE_LABEL, type CaseRow, type Overview, type Route } from "@/lib/api";
-import { Code, ErrorBox, RouteBadge, Severity, Skeleton, StatusPill } from "@/components/ui";
+import { api, EVENT_LABEL, money, ROUTE_LABEL, type CaseRow, type Overview, type Route, type TravellerEvent } from "@/lib/api";
+import { Code, ErrorBox, EventTag, RouteBadge, Severity, Skeleton, StatusPill } from "@/components/ui";
 
 const ACTIVE = ["OPEN", "AWAITING_APPROVAL", "ACTION_EXECUTED"];
 const SEV_RANK: Record<string, number> = { high: 0, medium: 1, low: 2 };
@@ -16,6 +16,7 @@ export default function QueuePage() {
   const [route, setRoute] = useState<Route | "ALL">("ALL");
   const [scope, setScope] = useState<Scope>("active");
   const [sev, setSev] = useState<string>("");
+  const [flow, setFlow] = useState<TravellerEvent | "" | "as_booked">("");
   const [q, setQ] = useState("");
 
   useEffect(() => {
@@ -31,11 +32,12 @@ export default function QueuePage() {
       .filter((c) => route === "ALL" || c.route === route)
       .filter((c) => scope === "all" || (scope === "active" ? ACTIVE.includes(c.status) : !ACTIVE.includes(c.status)))
       .filter((c) => !sev || c.severity === sev)
+      .filter((c) => !flow || (flow === "as_booked" ? c.traveller_events.length === 0 : c.traveller_events.includes(flow)))
       .filter((c) => !needle || [c.id, c.booking_id, c.hotel_id, c.guest_name, c.room_type, ...c.codes]
         .some((v) => (v ?? "").toLowerCase().includes(needle)))
       .sort((a, b) => SEV_RANK[a.severity] - SEV_RANK[b.severity]
         || (a.days_to_deadline ?? 9999) - (b.days_to_deadline ?? 9999) || a.id.localeCompare(b.id));
-  }, [cases, route, scope, sev, q]);
+  }, [cases, route, scope, sev, flow, q]);
 
   const counts = useMemo(() => {
     const m: Record<string, number> = {};
@@ -89,6 +91,11 @@ export default function QueuePage() {
               className="rounded border border-slate-300 px-2 py-1 text-xs">
               <option value="">Any severity</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option>
             </select>
+            <select aria-label="Traveller flow" value={flow} onChange={(e) => setFlow(e.target.value as TravellerEvent | "" | "as_booked")}
+              className="rounded border border-slate-300 px-2 py-1 text-xs">
+              <option value="">Any traveller flow</option><option value="as_booked">Stayed as booked</option>
+              {(Object.keys(EVENT_LABEL) as TravellerEvent[]).map((k) => <option key={k} value={k}>{EVENT_LABEL[k]}</option>)}
+            </select>
             <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search booking, hotel, code…"
               className="w-56 rounded border border-slate-300 px-2 py-1 text-xs" />
           </div>
@@ -118,7 +125,8 @@ export default function QueuePage() {
                   <tr key={c.id} className="border-b border-slate-50 hover:bg-slate-50">
                     <td className="px-3 py-2">
                       <Link href={`/cases/${c.id}`} className="font-medium text-slate-900 hover:underline">{c.id}</Link>
-                      <div className="text-xs text-slate-500">{c.booking_id}{c.kind === "cancellation" && " · cancellation"}</div>
+                      <div className="text-xs text-slate-500">{c.booking_id}</div>
+                      {c.traveller_events.length > 0 && <div className="mt-0.5 flex flex-wrap gap-1">{c.traveller_events.map((e) => <EventTag key={e} event={e} />)}</div>}
                     </td>
                     <td className="px-3 py-2"><Severity level={c.severity} /></td>
                     <td className="px-3 py-2"><RouteBadge route={c.route} /></td>

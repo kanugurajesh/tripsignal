@@ -10,7 +10,16 @@ import pytest
 for k in ("OPENAI_API_KEY", "GROQ_API_KEY", "AI_PROVIDER", "FALLBACK_PROVIDER"):
     os.environ.pop(k, None)
 
-from app.domain import Booking, Cancellation, ContractTerms, RateRow, VerifiedEvidence  # noqa: E402
+from app.domain import (  # noqa: E402
+    Booking,
+    Cancellation,
+    ContractTerms,
+    EarlyDeparturePolicy,
+    NoShowPolicy,
+    RateRow,
+    UpgradePolicy,
+    VerifiedEvidence,
+)
 
 
 def ev(doc: str = "DOC-1", quote: str = "q", verified: bool = True) -> VerifiedEvidence:
@@ -26,12 +35,21 @@ def row(room: str, start: str, end: str, rate: str | None, *, meal: str = "BB", 
 
 
 def terms(doc: str, effective: str, rates: list[RateRow], *, cancel: tuple[int, int] | None = (14, 1),
-          dispute: int | None = 30) -> ContractTerms:
+          dispute: int | None = 30, no_show: int | str | None = 1, early_departure: int | None = 1,
+          upgrade_complimentary: bool | None = True) -> ContractTerms:
+    """no_show: nights charged, or "full" for the whole stay; None = clause absent."""
     return ContractTerms(
         document_id=doc, hotel_name="Test Hotel", is_amendment=False, effective_from=date.fromisoformat(effective),
         effective_evidence=ev(doc, "effective"), rates=rates,
         cancellation=Cancellation(free_cancellation_days=cancel[0], penalty_nights=cancel[1], evidence=ev(doc, "cx"))
         if cancel else None,
+        no_show=None if no_show is None else NoShowPolicy(
+            penalty_nights=None if no_show == "full" else int(no_show), full_stay=no_show == "full",
+            evidence=ev(doc, "no-show")),
+        early_departure=None if early_departure is None else EarlyDeparturePolicy(
+            penalty_nights=early_departure, evidence=ev(doc, "early departure")),
+        upgrade=None if upgrade_complimentary is None else UpgradePolicy(
+            complimentary=upgrade_complimentary, evidence=ev(doc, "upgrade")),
         dispute_window_days=dispute, dispute_evidence=ev(doc, "dispute") if dispute else None,
     )
 

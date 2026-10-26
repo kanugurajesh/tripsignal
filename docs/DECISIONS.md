@@ -50,6 +50,16 @@ Each entry records what was decided, why, the evidence, and the trade-offs.
 ## D10 — Change during implementation: Next.js 16 Cache Components
 - **What changed:** The generated Next 16 app enables Cache Components by default, so client URL hooks (`usePathname`, `useParams`) must sit inside `<Suspense>`. The nav and the case view are wrapped accordingly.
 
+## D12 — Traveller flow: price what happened, from the clause that governs it
+- **What:** A booking now records what actually happened: `NO_SHOW` status, `actual_check_out` (earlier means early departure, later means extension), `extension_booked_on`, `stayed_room_type` and `upgrade_reason`. Contracts gain no-show, early-departure and upgrade clauses, extracted with verbatim quotes like every other term (`extract-v2`). Each billable night carries a basis (stay, extension, or a penalty), and the clauses used are returned with the result and quoted in the supplier email.
+- **Rules:**
+  - Each clause comes from the newest version in force on the booking date that states it, so an amendment can change the no-show penalty without restating the rates. Same-date versions that disagree raise VERSION_CONFLICT.
+  - Extension nights are priced at the terms in force on `extension_booked_on`, because extending a stay is a new commitment made on that date. The original nights keep the booking-date terms.
+  - Early-departure penalty nights are the first unused nights, capped at the number of unused nights.
+  - A no-show is never priced from the cancellation clause unless that clause explicitly covers no-shows. If no clause covers it, the result is MISSING_POLICY_TERMS and REQUEST_INFO.
+- **Why:** The feedback was to cover more of the traveller flow. These are the cases where supplier invoices most often drift from the contract: a full stay billed after a 2-night early departure, a no-show billed in full, an upgraded rate billed for a complimentary upgrade. The new code keeps the existing principle: a missing or unverified clause means abstain, never assume.
+- **Trade-off:** Data contradictions (a no-show with a departure date, a room change with no reason) are MISSING_BOOKING_FIELD, not a separate code, so they reuse the existing information-request flow.
+
 ## D11 — Change after first Groq run: honour `retry-after` on 429
 - **Evidence:** The first Groq run had 6/10 extractions fail with 429 under 1s/2s backoff. All failed safely (EXTRACTION_FAILED → escalate).
 - **Change:** `ProviderRateLimited` carries the server's `retry-after`, and the retry loop waits at least that long (capped at 60s). A test covers this.

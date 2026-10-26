@@ -12,6 +12,25 @@ export const ACTORS: Actor[] = [
 
 export type Route = "AUTO_CLEAR" | "SUPPLIER_QUERY" | "REQUEST_INFO" | "ESCALATE";
 
+export type TravellerEvent = "cancellation" | "no_show" | "early_departure" | "extension" | "hotel_upgrade" | "guest_upgrade";
+
+export const EVENT_LABEL: Record<TravellerEvent, string> = {
+  cancellation: "Cancellation",
+  no_show: "No-show",
+  early_departure: "Early departure",
+  extension: "Extension",
+  hotel_upgrade: "Hotel upgrade",
+  guest_upgrade: "Guest upgrade",
+};
+
+export const BASIS_LABEL: Record<string, string> = {
+  stay: "Stayed",
+  extension: "Extension",
+  early_departure_penalty: "Early-departure penalty",
+  no_show_penalty: "No-show penalty",
+  cancellation_penalty: "Cancellation penalty",
+};
+
 export type CaseRow = {
   id: string;
   booking_id: string;
@@ -20,7 +39,8 @@ export type CaseRow = {
   status: string;
   severity: "low" | "medium" | "high";
   codes: string[];
-  kind: "stay" | "cancellation";
+  kind: "stay" | "cancellation" | "no_show";
+  traveller_events: TravellerEvent[];
   currency: string | null;
   delta: string | null;
   dispute_deadline: string | null;
@@ -43,11 +63,13 @@ export type CaseDetail = {
   result: {
     codes: string[];
     kind: string;
+    traveller_events: TravellerEvent[];
     currency: string | null;
     expected_amount: string | null;
     charged_amount: string | null;
     delta: string | null;
-    nights: { night: string; rate: string; document_id: string; evidence: Evidence }[];
+    nights: { night: string; basis: string; room_type: string | null; rate: string; document_id: string; evidence: Evidence }[];
+    clauses?: Evidence[];
     findings: { code: string; message: string; evidence: Evidence[] }[];
     applied_documents: string[];
     assumptions: string[];

@@ -2,7 +2,7 @@
 with the configured provider (default: oracle, no network). Also walks a few cases
 through the action lifecycle so the history views are populated.
 
-    python -m app.seed [--reset] [--limit 60]
+    python -m app.seed [--reset] [--limit N]
 """
 
 from __future__ import annotations
@@ -22,7 +22,7 @@ from app.service import ActionPayload, Actor, OutcomeIn
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--reset", action="store_true")
-    ap.add_argument("--limit", type=int, default=102)
+    ap.add_argument("--limit", type=int, help="seed only the first N dataset cases (default: all)")
     args = ap.parse_args()
     settings = get_settings()
     settings.validate_startup()
